@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/watch_shop/static/css/main.b74cb165.css",
-    "main.js": "/watch_shop/static/js/main.51155d40.js",
+    "main.js": "/watch_shop/static/js/main.1f5837c9.js",
     "static/media/image-1.jpg": "/watch_shop/static/media/image-1.914d0c1c604160fe1a8d.jpg",
     "static/media/image-2.jpg": "/watch_shop/static/media/image-2.c137df53c7f46d6279df.jpg",
     "static/media/image-3.jpg": "/watch_shop/static/media/image-3.fab9552d813bc3f0ede4.jpg",
     "index.html": "/watch_shop/index.html",
     "main.b74cb165.css.map": "/watch_shop/static/css/main.b74cb165.css.map",
-    "main.51155d40.js.map": "/watch_shop/static/js/main.51155d40.js.map"
+    "main.1f5837c9.js.map": "/watch_shop/static/js/main.1f5837c9.js.map"
   },
   "entrypoints": [
     "static/css/main.b74cb165.css",
-    "static/js/main.51155d40.js"
+    "static/js/main.1f5837c9.js"
   ]
 }
