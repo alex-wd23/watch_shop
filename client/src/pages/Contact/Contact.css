@@ -1,0 +1,22 @@
+.contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: black;
+    padding: 1vw;
+    color: #fff;
+}
+
+.contact h1 {
+    /* font-size: 3em; */
+    margin-bottom: 2vw;
+}
+
+.contactInfo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 50px;
+}

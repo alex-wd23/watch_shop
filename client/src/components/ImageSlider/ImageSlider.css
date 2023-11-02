@@ -1,0 +1,57 @@
+/* Slider Container Styles */
+.sliderStyles {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 98.8%;
+  box-shadow: #333 1px 3px 4px;
+}
+
+/* Individual Slide Styles */
+.slideStyles {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Slides Container Styles with Transition Effect */
+.slidesContainerStyles {
+  display: flex;
+  height: 100%;
+  transition: transform ease-out 0.3s;
+}
+
+/* Overflow Styles for Hiding Non-Active Slides */
+.slidesContainerOverflowStyles {
+  overflow: hidden;
+  height: 100%;
+}
+
+/* Arrow Button Styles */
+.imgSliderArrowStyles {
+  position: absolute;
+  top: 50%;
+  font-size: 3.5vw;
+  color: #fff;
+  z-index: 2;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+/* Positioning for Right Arrow */
+.imgSliderRightArrowStyles {
+  right: 2vw;
+}
+
+/* Positioning for Left Arrow */
+.imgSliderLeftArrowStyles {
+  left: 2vw;
+}
+
+/* Responsive Styling for Arrow Buttons */
+@media (max-width: 768px) { 
+  .imgSliderArrowStyles {
+    font-size: 8vw;
+  }
+}

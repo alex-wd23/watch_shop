@@ -1,0 +1,31 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  
+}
+
+body {
+ 
+
+  /* background: url('./img/background.jpg') no-repeat center center fixed; */
+  /* background: linear-gradient(217deg, rgba(126, 126, 145, 0.8), rgba(7, 7, 7, 0) 70.71%); */
+  background: rgb(0, 0, 0);      
+ -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  max-width:100%;
+  height: auto;
+  
+
+}
+
+a {
+  text-decoration: none;
+  display: inline-block;
+}
+

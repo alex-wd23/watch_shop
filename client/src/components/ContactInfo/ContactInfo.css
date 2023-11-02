@@ -1,0 +1,28 @@
+.contactWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #222;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+}
+
+.contactWrapper i {
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.contactWrapper h5 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.contactWrapper p {
+    color: #ccc;
+    margin-bottom: 10px;
+    font-size: 1em;
+}

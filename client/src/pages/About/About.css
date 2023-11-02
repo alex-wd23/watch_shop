@@ -1,0 +1,121 @@
+/* Base styles for the about page */
+.about {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:flex-start;
+    width:100%;
+    height:auto;
+    gap: 3vw;
+    color: white;
+    padding: 0 5%;
+}
+
+/* Styles for the title */
+.title {
+    padding-top: 1vw;
+}
+
+h1 {
+    text-shadow: 1.5px 1.5px 2.5px rgb(116, 109, 109);
+}
+
+/* Styles for section1 */
+.section1 {
+    display:flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2vw;
+    flex-wrap: wrap;
+}
+
+.text1 {
+    flex: 0.30; 
+}
+
+.text1 p:first-of-type {
+    color: white;
+}
+
+.text1 p {
+    color:grey;
+}
+
+/* Styles for the image in section1 */
+.midImageContainer {
+    flex: 0.50;
+    max-width: 50%;
+    min-width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.midImage {
+    width: 100%;
+    height: auto;
+    
+}
+
+/* Styles for section2 */
+.section2 {
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap:1vw;
+}
+
+.firstLine, .secondLine {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* Styles for section3 */
+.section3 {
+    display:flex;
+    align-items: center;
+    margin: 5vw;
+}
+
+.text3 {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap:0.9em;
+}
+
+.text3 p {
+    font-size: 1.2rem;
+    color: grey
+}
+
+/* Styles for team portraits in section3 */
+.teamPortraits {
+    display:flex;
+    gap:5vw;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+    .section1, .section2, .section3 {
+        margin: 5vw;
+    }
+
+    .section1 {
+        flex-direction: column;
+        align-items: center;
+        flex-direction: column-reverse;
+    }
+
+    .midImageContainer {
+        max-width: 100%;
+    }
+}

@@ -1,0 +1,43 @@
+.portrait {
+    text-align: center;
+}
+
+.portrait-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.portrait-name {
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+
+.portrait-position {
+    color: grey;
+}
+
+.socialMediaLinks {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; 
+    transition: opacity 0.3s ease;
+    
+}
+
+.portrait .socialMediaLinks i {
+    color: rgb(255, 255, 255);
+}
+
+.portrait:hover .socialMediaLinks i {
+    color: rgb(255, 255, 255);
+    
+}
+
+.portrait:hover .socialMediaLinks {
+    opacity: 1;
+    transition: opacity 2s ease;
+    
+}

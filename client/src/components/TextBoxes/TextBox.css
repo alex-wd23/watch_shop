@@ -1,0 +1,123 @@
+@property --angle {
+    syntax: '<angle>';
+    initial-value: 90deg;
+    inherits: true;
+}
+  
+  @property --gradX {
+    syntax: '<percentage>';
+    initial-value: 50%;
+    inherits: true;
+ }
+  
+  @property --gradY {
+    syntax: '<percentage>';
+    initial-value: 0%;
+    inherits: true;
+}
+  
+  @keyframes borderRotate {
+	100% {
+		--angle: 420deg;
+	}
+}
+
+@keyframes borderRadial {
+	20% {
+		--gradX: 100%;
+		--gradY: 50%;
+	}
+	40% {
+		--gradX: 100%;
+		--gradY: 100%;
+	}
+	60% {
+		--gradX: 50%;
+		--gradY: 100%;
+	}
+	80% {
+		--gradX: 0%;
+		--gradY: 50%;
+	}
+	100% {
+		--gradX: 50%;
+		--gradY: 0%;
+	}
+}
+  
+:root {
+      --d: 2500ms;
+      --angle: 90deg;
+      --gradX: 100%;
+      --gradY: 50%;
+      --c1: rgba(255, 255, 255, 0.548);
+      --c2: rgba(0, 0, 0, 0.1);
+}
+  
+
+.TextBox {
+    position: relative;
+    width: auto;
+    max-width: 700px;
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #000000;
+    padding: 2rem;
+    text-align: center;
+    color: grey;
+    transition: transform 0.3s, background-color 0.3s;
+    margin: 0 auto; /* Centering the box */
+    /* box-sizing: border-box; */
+    gap:1vw;
+    border: solid transparent 0.25rem;
+}
+
+.TextBox h4 {
+    margin-bottom: auto;
+    padding: 0.1rem;
+    color: rgb(255, 255, 255);
+    text-decoration: underline;
+}
+
+.TextBox p {
+    margin: 0;
+    padding: 0.1rem;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    width: 70%;
+}
+
+.TextBox:hover {
+    border: solid transparent 0.25rem;
+    border-image: conic-gradient(from var(--angle), var(--c2), var(--c1) 0.1turn, var(--c1) 0.15turn, var(--c2) 0.25turn) 30;
+    animation: borderRotate var(--d) linear infinite forwards;
+}
+
+/* Media queries for responsiveness */
+
+/* For tablets */
+@media (max-width: 768px) {
+    .TextBox {
+        font-size: 1.2rem;
+    }
+    
+    .TextBox p {
+        font-size: 0.9rem;
+    }
+}
+
+/* For mobile phones */
+@media (max-width: 480px) {
+    .TextBox {
+        font-size: 1rem;
+    }
+    
+    .TextBox p {
+        font-size: 0.8rem;
+    }
+}
