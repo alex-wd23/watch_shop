@@ -7,10 +7,15 @@ import Contact from './pages/Contact/Contact.js';
 import About from './pages/About/About.js';
 import Account from './pages/Account/Account';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import LoginModal from './components/LoginModal/LoginModal';
+
+// Reset link for testing
+// http://localhost:3000/watch_shop/#reset/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjgsImlhdCI6MTY5OTIxNzA3NCwiZXhwIjoxNjk5MjIwNjc0fQ.gCBkvGppTkljaGq_9KaNAwTT_8lzNiVj4RtKV2YSYNg
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token') || null);
-  console.log(token)
+  const [showModal, setShowModal] = useState(false);
+  
 
   return (
     <div>
@@ -20,6 +25,12 @@ function App() {
             <Route index element={<Home />}/>
             <Route path="/about" element={<About />}/>
             <Route path="/contact" element={<Contact />}/> 
+            <Route path="/reset/:resetToken" element={ 
+            <>
+            <Home />
+            <LoginModal setShowModal={setShowModal} />
+            </>
+            }/>
             <Route path="/account" element={
               <PrivateRoute token={token}>
                 <Account setToken={setToken}/>

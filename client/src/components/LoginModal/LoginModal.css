@@ -79,3 +79,7 @@ h2 {
 .errorText {
     color:red;
 }
+
+.successText {
+    color:green;
+}
