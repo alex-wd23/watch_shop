@@ -4,12 +4,11 @@ import Header from '../Header/Header.js';
 import Footer from '../Footer/Footer.js';
 
 
-
 // Here all the pages are displayed
-const Layout = ({ setToken, token }) => {
+const Layout = () => {
   return (
     <div>
-        <Header setToken={setToken} token={token} />
+        <Header />
         <Outlet />  
         <Footer />
     </div>

@@ -1,0 +1,50 @@
+
+.dropdown-content {
+    display: block;
+    /* background-color: #121212;; */
+    min-width: 160px;
+    padding: 12px 16px;
+    z-index: 1;
+  }
+
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 24px;
+    background-color: #eee;
+    border-radius: 1em;
+  }
+
+  .container:hover input ~ .checkmark {
+    background-color: #ccc;
+    
+  }
+  
+  .container input:checked ~ .checkmark {
+    background-color: #121212;
+    
+  }
+  
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  .container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 8px;
+    height: 15px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }

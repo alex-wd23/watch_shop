@@ -16,11 +16,19 @@ export const ProductTab = ({ parentWidth }) => {
 
   // UseEffect to handle the changing of activeButton, filtering products as per the activeButton
   useEffect(() => {
-    const filtered = productsTable.filter((product) => {
-      return product.category === activeButton;
-    });
-    setFilteredProducts(filtered);
-    setCurrentIndex(0);
+    // Function to fetch products from the server
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('http://localhost:3001/products');
+        const data = await response.json();
+        const filteredData = data.filter(product => product.category === activeButton);
+        setFilteredProducts(filteredData);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
+  
+    fetchProducts();
   }, [activeButton]);
 
   let productsDisplayedOnPage;

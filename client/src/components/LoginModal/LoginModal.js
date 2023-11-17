@@ -1,13 +1,13 @@
 import { React, useState, useEffect } from 'react';
-import axios from 'axios';
 import './LoginModal.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import ForgotPwd from './ForgotPwd';
 import Login from './Login';
 import Register from './Register';
 import ResetPwd from './ResetPwd';
+import axios from 'axios';
 
-const LoginModal = ({ showModal, setShowModal, setToken }) => {
+const LoginModal = ({ showModal, setShowModal }) => {
     const navigate = useNavigate();
     const { resetToken } = useParams();
     const [formData, setFormData] = useState({
@@ -35,7 +35,11 @@ const LoginModal = ({ showModal, setShowModal, setToken }) => {
               }
             } catch (error) {
               // If the token is not valid, handle the error, maybe redirect or show a message
-              console.error('Token verification failed:', error);
+              if (error.response.status === 404) {
+              setShowModal(true);
+              setFormData({...formData, form: "reset"})
+              setError("Invalid or expired reset token.")
+              } 
             }
           }
         };
@@ -51,17 +55,41 @@ const LoginModal = ({ showModal, setShowModal, setToken }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (formData.form === 'register') {
+            if (!/^[A-Za-z0-9.]{7,}$/.test(formData.username)) {
+                setError('Username must be more than 6 characters and can include letters, numbers, and the dot character.');
+                return;
+            }
+
+            if (formData.password.length < 8 || !/^[A-Za-z0-9]+$/.test(formData.password)) {
+                setError('Password must be at least 8 characters long and must include both letters and numbers.');
+                return;
+            }
+        }
+
+        // Conditional validation for the 'reset' form
+        if (formData.form === 'reset') {
+            if (formData.newPassword.length < 8 || !/^[A-Za-z0-9]+$/.test(formData.newPassword)) {
+                setError('New Password must be at least 8 characters long and must include both letters and numbers.');
+                return;
+            }
+
+            if (formData.newPassword !== formData.confirmPassword) {
+                setError('Passwords do not match.');
+                return;
+            }
+        }
         try {
             let response;
             if (formData.form === 'login') {
                 response = await axios.post('http://localhost:3001/signin', {
                     username: formData.username,
                     password: formData.password,
-                });
+                }, { withCredentials: true });
 
                 if (response.status === 200) {
-                    setToken(response.data.token);
-                    localStorage.setItem('token', response.data.token);
+                    
+                    
                     setShowModal(false);
                     navigate('/account');
                 } else {
@@ -74,16 +102,19 @@ const LoginModal = ({ showModal, setShowModal, setToken }) => {
                     email: formData.email,
                 });
 
-                if (response.status === 200) {
-                    setSuccessMessage('Account created.');
-                    setFormData({
-                        ...formData,
-                        username: '',
-                        password: '',
-                        email: '',
-                        form: 'login',
-                    });
-                } else {
+
+                if (response.status === 201) {  // Handle 201 status code as success
+                setSuccessMessage('Account created.');
+                setFormData({
+                    ...formData,
+                    username: '',
+                    password: '',
+                    email: '',
+                    form: 'login',
+                });
+                }
+
+                 else {
                     setError(`Registration Error: ${response.status} ${response.statusText}`);
                 }
             } else if (formData.form === 'forgot') {
@@ -174,6 +205,7 @@ const LoginModal = ({ showModal, setShowModal, setToken }) => {
         setSuccessMessage(null);
     };
 
+    
 
     const usernameAndPassword = (
         <>

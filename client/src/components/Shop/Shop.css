@@ -1,0 +1,74 @@
+/* Shop.css */
+.shop-page {
+  display: flex;
+  flex-direction: column; /* Stack title and main content vertically */
+  /* background-color: #121212; */
+  min-height: 100vh;
+  padding: 1vw;
+  /* background: url('./background.jpg') no-repeat center center fixed; */
+}
+
+.title-container {
+  display: flex;
+  justify-content: center; /* Center title horizontally */
+  align-items: center; /* Center title vertically if there's height to work with */
+  flex-shrink: 0; /* Prevent the title container from shrinking */
+  /* No need for margin-left here */
+  margin-bottom: 3vh;
+}
+
+.title {
+  /* Style your title as needed */
+  color: white;
+  text-align: center;
+}
+
+.main-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100vh;
+  
+}
+
+.filter-sidebar {
+  /* Keep your existing styles */
+  width: 240px;
+  padding: 20px;
+  /* ... */
+  margin-right: 1em;
+}
+
+
+  .products {
+    
+    flex-grow: 1; /* Take up all available space */
+    padding: 20px;
+    flex-direction: row;
+  }
+
+  .shop-page .product {
+    
+    width:20vw;
+  }
+
+  .shop-page .productContainer {
+    padding: 1vw;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust the min-width as needed */
+    grid-gap: 20px; /* Space between items */
+    justify-content: start; /* Align items to the start of the container, optional */
+    align-items: start; /* Align items to the start of the container, optional */
+    gap: 2vw;
+  }
+  
+  .shop-page .product {
+    /* Override any specific styles from Product.css that should not apply on the shop page */
+    margin: 0; /* Reset margin if set in Product.css */
+    width: 100%; /* Full width of the grid column */
+    
+  }
+
+  .hr-shop {
+    color:wheat;
+  }

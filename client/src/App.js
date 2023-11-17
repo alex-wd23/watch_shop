@@ -8,12 +8,13 @@ import About from './pages/About/About.js';
 import Account from './pages/Account/Account';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import LoginModal from './components/LoginModal/LoginModal';
+import Shop from './components/Shop/Shop.js';
 
-// Reset link for testing
-// http://localhost:3000/watch_shop/#reset/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjgsImlhdCI6MTY5OTIxNzA3NCwiZXhwIjoxNjk5MjIwNjc0fQ.gCBkvGppTkljaGq_9KaNAwTT_8lzNiVj4RtKV2YSYNg
+
+//https://www.casio.com/intl/watches/gshock/
 
 function App() {
-  const [token, setToken] = useState(localStorage.getItem('token') || null);
+ 
   const [showModal, setShowModal] = useState(false);
   
 
@@ -21,10 +22,11 @@ function App() {
     <div>
       <HashRouter basename="/">
         <Routes>
-          <Route path='/' element={<Layout setToken={setToken} token={token}/>}>  
+          <Route path='/' element={<Layout />}>  
             <Route index element={<Home />}/>
             <Route path="/about" element={<About />}/>
             <Route path="/contact" element={<Contact />}/> 
+            <Route path="/shop" element={<Shop />}/> 
             <Route path="/reset/:resetToken" element={ 
             <>
             <Home />
@@ -32,8 +34,8 @@ function App() {
             </>
             }/>
             <Route path="/account" element={
-              <PrivateRoute token={token}>
-                <Account setToken={setToken}/>
+              <PrivateRoute >
+                <Account />
               </PrivateRoute> 
             } />
           </Route>
