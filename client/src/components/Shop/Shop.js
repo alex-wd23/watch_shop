@@ -6,6 +6,7 @@ import productsTable from './../../Database/Database';
 import Scroll from '../Scroll/Scroll';
 import axios from 'axios';
 
+
 // const displayedProducts = productsTable.filter((product)=> {return product;} )
 
 const Shop = () => {
@@ -26,8 +27,7 @@ const Shop = () => {
 
 
   return (
-    <div className="shop-page">
-      
+    <div className="shop-page"> 
       <header className="title-container">
         <h1 className='title'>PRODUCTS</h1>
       </header>

@@ -11,6 +11,7 @@ import LoginModal from './components/LoginModal/LoginModal';
 import Shop from './components/Shop/Shop.js';
 
 
+
 //https://www.casio.com/intl/watches/gshock/
 
 function App() {

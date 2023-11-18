@@ -7,7 +7,7 @@
   gap: 1.5em;
   /* padding-bottom: 10% */
   
-
+  
 
   
 }
@@ -21,9 +21,10 @@
   font-family: 'Oswald', sans-serif;
   color: white;
   gap: 0.1em;
-  animation: fadeInAnimation ease 2s;
+  animation: fadeInAnimation ease 3s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
+  
 
 }
 
@@ -40,7 +41,7 @@
   /* Apply a maximum size to the container */
   max-height: 25vh;
   max-width: 10vw;
-  overflow: hidden; /* Hide any overflowing content */
+  overflow: hidden; /*Hide any overflowing content*/
   
 }
 
@@ -50,12 +51,16 @@
   max-height: 100%;
   transition: transform 0.3s ease-in-out; /* Add a smooth transition effect */
   overflow: hidden;
+  border-radius: 10%;
 }
 
 .productImage:hover {
   /* Apply a scale of 1.2 (20% zoom) on hover */
   transform: scale(1.2);
+  border-radius: 1em;
 }
+
+
 
 
 .button-87 {

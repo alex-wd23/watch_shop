@@ -23,7 +23,8 @@
   }
   
   .container input:checked ~ .checkmark {
-    background-color: #121212;
+    /* background-color: #121212; */
+    background-color: black;
     
   }
   

@@ -9,14 +9,18 @@ import axios from 'axios';
 const Header = () => {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
 
+  console.log(isAuthenticated)
+
+  //// problem with use effect this is why is working only when reopening the browser
   useEffect(() => {
     // Check the authentication status when the component mounts
     const checkAuthStatus = async () => {
       try {
         const response = await axios.get('http://localhost:3001/checkAuth', { withCredentials: true });
         // If the request is successful, set the user as authenticated
+        console.log('response',response.data.user)
         if (response.data.user) {
           setIsAuthenticated(true);
         }
@@ -32,12 +36,15 @@ const Header = () => {
     checkAuthStatus();
   }, []);
 
+
   const handleAccountIconClick = () => {
+
     if (isAuthenticated) {
       navigate('/account');
     } else {
       setShowModal(true);
     }
+    
   };
 
   const handleAccountShopClick = () => {

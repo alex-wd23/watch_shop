@@ -2,9 +2,8 @@ import React from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-
-
 const Account = () => {
+
   const navigate = useNavigate();
   const logout = async () => {
    
@@ -20,8 +19,8 @@ const Account = () => {
   return (
     <div style={{backgroundColor: 'white'}}>Account
         <button onClick={logout}>LOGOUT</button>
-    
     </div>
+    
     
   )
 }
