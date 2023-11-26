@@ -27,6 +27,14 @@
     background-color: black;
     
   }
+
+  .filter-group h2{
+    font-size: 1.2rem;
+  }
+
+  .container {
+    font-size: 1rem;
+  }
   
   .checkmark:after {
     content: "";
@@ -37,6 +45,7 @@
   .container input:checked ~ .checkmark:after {
     display: block;
   }
+
   
   .container .checkmark:after {
     left: 9px;

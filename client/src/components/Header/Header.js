@@ -9,37 +9,29 @@ import axios from 'axios';
 const Header = () => {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  console.log(isAuthenticated)
-
-  //// problem with use effect this is why is working only when reopening the browser
-  useEffect(() => {
-    // Check the authentication status when the component mounts
-    const checkAuthStatus = async () => {
-      try {
-        const response = await axios.get('http://localhost:3001/checkAuth', { withCredentials: true });
-        // If the request is successful, set the user as authenticated
-        console.log('response',response.data.user)
-        if (response.data.user) {
-          setIsAuthenticated(true);
-        }
-      } catch (error) {
-        // If there is an error, particularly a 401 error, the user is not authenticated
-        if (error.response && error.response.status === 401) {
-          setIsAuthenticated(false);
-        } else {
-          console.error('Error checking authentication status:', error);
-        }
+  const checkAuthStatus = async () => {
+  
+    try {
+      const response = await axios.get('http://localhost:3001/checkAuth', { withCredentials: true });
+      const isAuthenticatedNow = response.data.user ? true : false;
+      setIsAuthenticated(isAuthenticatedNow);
+      return isAuthenticatedNow;
+    } catch (error) {
+      // If there is an error, particularly a 401 error, the user is not authenticated
+      if (error.response && error.response.status === 401) {
+        setIsAuthenticated(false);      
+      } else {
+        console.error('Error checking authentication status:', error);
       }
-    };
-    checkAuthStatus();
-  }, []);
+    }
+  };
 
 
-  const handleAccountIconClick = () => {
-
-    if (isAuthenticated) {
+  const handleAccountIconClick = async () => {
+    const authenticated = await checkAuthStatus();
+    if (authenticated) {
       navigate('/account');
     } else {
       setShowModal(true);

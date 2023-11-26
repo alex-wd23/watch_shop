@@ -5,7 +5,7 @@ import Product from '../Product/Product';
 import productsTable from './../../Database/Database';
 import Scroll from '../Scroll/Scroll';
 import axios from 'axios';
-
+import ParticlesContainer from '../Particles/ParticlesBG';
 
 // const displayedProducts = productsTable.filter((product)=> {return product;} )
 
@@ -27,12 +27,14 @@ const Shop = () => {
 
 
   return (
+    
     <div className="shop-page"> 
+      {/* <ParticlesContainer></ParticlesContainer> */}
       <header className="title-container">
         <h1 className='title'>PRODUCTS</h1>
       </header>
       <hr className='hr-shop'></hr>
-      <div className="main-content">
+      <div className="main-content">       
         <ShopFilter setDisplayedProducts={setDisplayedProducts}/>
         <div className='products'>
           <Scroll>
@@ -41,6 +43,7 @@ const Shop = () => {
         </div>
       </div>
     </div>
+    
   );
 };
 

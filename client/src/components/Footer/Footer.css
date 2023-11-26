@@ -1,10 +1,10 @@
-* {
+/* * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     z-index: 1;
   }
-  
+   */
   .footer {
     background-color: black;
     color: #fefefe;
@@ -12,10 +12,16 @@
     width: 100%;
     bottom: 0;
     left: 0;
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* z-index: 1; */
+   
   }
-  
+
+
   .footer .heading {
-    
     color: #fefefe;
     max-width: 1010px;
     width: 90%;
@@ -29,15 +35,18 @@
     display: flex;
     justify-content: space-evenly;
     margin: 1.5rem;
+
   }
   
   .footer .content p {
     margin-bottom: 1.3rem;
+    
   }
   
   .footer .content a {
     text-decoration: none;
     color: #fefefe;
+    
   }
   
   .footer .content a:hover {
@@ -56,8 +65,11 @@
   
   footer hr {
     margin: 2rem 0;
+    
   }
   
+ 
+
   @media (max-width: 767px) {
     .footer .content {
       display: flex;

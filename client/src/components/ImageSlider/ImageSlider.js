@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import './ImageSlider.css';
 
-const ImageSlider = ({ slides, parentWidth }) => {
+const ImageSlider = ({ slides, parentWidth, autoSlide, }) => {
   const sliderRef = useRef(null);
   const timerRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -27,9 +27,11 @@ const ImageSlider = ({ slides, parentWidth }) => {
 
   // Setting up auto-slide functionality
   useEffect(() => {
-    timerRef.current = setTimeout(goToNext, 4000);
-    return () => clearTimeout(timerRef.current); // Cleanup timer on component unmount
-  }, [goToNext, currentIndex]);
+    if (autoSlide) {
+      timerRef.current = setTimeout(goToNext, 4000);
+      return () => clearTimeout(timerRef.current); // Cleanup timer on component unmount
+    }
+  }, [goToNext, currentIndex, autoSlide]);
 
   // Adding and cleaning up the keyboard event listener
   useEffect(() => {
@@ -40,6 +42,7 @@ const ImageSlider = ({ slides, parentWidth }) => {
     };
   }, []);
 
+
   return (
     <div ref={sliderRef} tabIndex="0" className='sliderStyles'>  
       <div onClick={goToPrevious} className='imgSliderArrowStyles imgSliderLeftArrowStyles'>❰</div>
@@ -47,13 +50,13 @@ const ImageSlider = ({ slides, parentWidth }) => {
 
       <div className='slidesContainerOverflowStyles'>
         <div className='slidesContainerStyles' style={{
-          width: `${parentWidth * slides.length}px`,
-          transform: `translateX(${-(currentIndex * parentWidth)}px)`
+          width: `${parentWidth * slides.length }px`,
+          transform: `translateX(${-(currentIndex * parentWidth)}px)`,
         }}>
           {slides.map((slide, index) => (
             <div key={index} className='slideStyles'>
               {/* Image applied with lazy loading and centered within each slide */}
-              <img src={slide.url} alt="" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <img className='sliderImg'src={slide.url} alt="" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
           ))}
         </div>

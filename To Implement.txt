@@ -9,3 +9,8 @@ HTTPS: Ensure that the application is served over HTTPS.
 2. 
 
 Implement front end user errors.
+
+
+3. BUG
+
+Login insert username and password click on register the fileds are not clearing

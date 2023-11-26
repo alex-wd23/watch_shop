@@ -6,7 +6,7 @@ const PriceRange = ({filters, handleFilterChange}) => {
 
   return (
         <div className='priceRange'>
-        <h2 style={{color: 'white', cursor: "pointer"}}onClick={() => setIsOpen(!isOpen)}>Price Range</h2>
+        <h2 style={{color: 'white', cursor: "pointer", fontSize: '1.2rem'}}onClick={() => setIsOpen(!isOpen)}>Price Range</h2>
         { isOpen && (
         <>
         <input

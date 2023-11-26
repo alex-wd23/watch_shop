@@ -6,6 +6,7 @@
   min-height: 100vh;
   padding: 1vw;
   /* background: url('./background.jpg') no-repeat center center fixed; */
+  /* background-image: linear-gradient(180deg, #000000 5%, #808080 130%); */
 }
 
 .title-container {

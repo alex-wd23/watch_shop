@@ -16,7 +16,7 @@
     text-decoration: none;
   }
   
-  li {
+  .navbar li {
     list-style: none;
   }
 
@@ -34,7 +34,7 @@
     /* -webkit-box-shadow: #333 1px 3px 4px;
     -moz-box-shadow: #333 1px 3px 4px;
     box-shadow: #333 1px 3px 4px; */
-    /* z-index:2; */
+    z-index:2;
 
   }
   

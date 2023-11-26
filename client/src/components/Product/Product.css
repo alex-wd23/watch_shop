@@ -6,10 +6,6 @@
   align-items: center; 
   gap: 1.5em;
   /* padding-bottom: 10% */
-  
-  
-
-  
 }
 
 .product {
@@ -58,6 +54,7 @@
   /* Apply a scale of 1.2 (20% zoom) on hover */
   transform: scale(1.2);
   border-radius: 1em;
+  cursor: pointer;
 }
 
 
@@ -111,11 +108,11 @@
   .productImage {
       width: 60%;
   }
-
-  .button-87 {
+ /* BUTTONS DIMENSIONS RESIZE */
+  /* .button-87 {
       padding: 0.7em 1.5em;
       font-size: 3.5vw;
-  }
+  } */
 }
 
 @media (min-width: 769px) and (max-width: 1024px) { 
@@ -128,8 +125,8 @@
       width: 70%;
   }
 
-  .button-87 {
+  /* .button-87 {
       padding: 0.6em 1.2em;
       font-size: 2.5vw;
-  }
+  } */
 }

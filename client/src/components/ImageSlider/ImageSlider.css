@@ -2,9 +2,11 @@
 .sliderStyles {
   display: flex;
   align-items: center;
+  justify-content: center;
   position: relative;
   height: 98.8%;
   /* box-shadow: #333 1px 3px 4px; */
+ 
 }
 
 /* Individual Slide Styles */
@@ -39,6 +41,7 @@
   transform: translateY(-50%);
 }
 
+
 /* Positioning for Right Arrow */
 .imgSliderRightArrowStyles {
   right: 2vw;
@@ -48,6 +51,7 @@
 .imgSliderLeftArrowStyles {
   left: 2vw;
 }
+
 
 /* Responsive Styling for Arrow Buttons */
 @media (max-width: 768px) { 

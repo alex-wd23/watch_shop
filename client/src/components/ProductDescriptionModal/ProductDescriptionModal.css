@@ -1,0 +1,169 @@
+.productModal {
+    position: fixed;
+    z-index: 1000; /* Ensure it's above other content */
+    left: 0;
+    top: 0;
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    background-color: rgba(0,0,0,0.8); /* Semi-transparent black for darkening effect */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; 
+    
+}
+
+.productModalContent {
+    z-index: 1001; /* Ensure it's above the overlay */
+    gap: 1vh;
+    /* background-color: #a8a2a2; */
+    background-image: linear-gradient(180deg, #918888 0%, #ffffff 100%);
+    padding: 40px;
+    border-radius: 1em;
+    text-align: center;
+    width: 75%; /* Adjust as necessary */
+    height: 85%; /* Adjust as necessary */
+    position: relative;
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+    overflow-y: auto; /* Add vertical scroll */
+    overflow-x: hidden; /* Hide horizontal scroll */   
+    margin: 3vw;
+}
+
+.productModal .sliderStyles   {
+    max-width: 91%;
+    max-height: 80%;
+    border-radius: 1em; 
+}
+
+.productModal .slidesContainerOverflowStyles {
+    border-radius: 1em;
+}
+
+.productModal .sliderImg {
+    object-fit: contain;
+}
+
+/* BUG Overlay */
+.productModal h1 {
+    font-size: 2.5em;
+    text-shadow: 2px 2px 3px rgb(107, 103, 103);
+    text-transform: uppercase;
+}
+
+.options {
+    color: rgb(110, 106, 106);
+    display: flex;
+    gap: 2vw;
+    font-weight: bold;
+    font-size: 1.5rem;
+    cursor: pointer;
+    text-shadow: 2px 2px 3px rgb(107, 103, 103);
+}
+
+.productModal .onClickUnderline {
+    font-weight: bold;
+    font-size: 1.5rem;
+    position: relative;
+    align-items: center;
+    color: rgb(5, 5, 5);
+    text-shadow: 2px 2px 3px rgb(107, 103, 103);
+    
+    &::after {
+        position: absolute;
+        content: "";
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: #020202;
+        transform: scaleX(1); 
+        transform-origin: left; 
+    }
+}
+
+.description-box, .specifications-box {
+    
+    width: 75%;
+    height: 75%;
+    border-radius: 1em;
+   
+    
+    
+    /* background: rgb(184, 176, 176); */
+    text-align: left; /* Align text to the left */
+}
+
+
+.productModal h2 {
+    font-weight: bolder;
+}
+
+.specifications-box {
+    
+    width: 75%;
+    height: 75%;
+}
+
+.productModal .description-box ol, 
+.productModal .description-box ul {
+    list-style-type: disc; 
+    padding-left: 20px;
+}
+
+.specifications-table {
+    
+    
+    width: 100%; /* Full width of the container */
+    border-collapse: collapse; /* Collapse borders */
+    margin-top: 20px; /* Spacing from the header */
+  }
+  
+  .specifications-table td {
+    padding: 10px; /* Padding for table cells */
+    border-bottom: 1px solid #ddd; /* Bottom border for each row */
+  }
+  
+  .specifications-table tr:nth-child(odd) {
+    background-color: #f2f2f2; /* Zebra striping for rows */
+  }
+  
+  .specifications-table tr:hover {
+    background-color: #ddd; /* Hover effect for rows */
+  }
+
+
+  @media (max-width: 768px)  {
+
+    .productModal {
+        overflow-y: auto; /* Enable vertical scroll on the modal */
+      }
+
+    .productModal .options {
+        font-size: 1rem; /* Smaller font size for medium screens */
+
+    }
+
+    .productModal .slideStyles {
+        height: 40vh;
+    }
+
+    .productModal .onClickUnderline { 
+        font-size: 1rem;
+    }
+
+    .productModal h1 {
+        font-size: 1.7em;
+       
+    }
+
+    .productModalContent {
+        width: 100%;
+        
+    }
+
+  
+    
+}

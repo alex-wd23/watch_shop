@@ -1,163 +1,95 @@
 import React from 'react';
-import Particles from "react-tsparticles"; // Ensure this package is installed
-import { loadFirePreset } from "tsparticles-preset-fire";
+import Particles from 'react-tsparticles';
+import { loadFull } from 'tsparticles';
 
-export class ParticlesContainer extends React.PureComponent {
-  // this customizes the component tsParticles installation
+export default class ParticlesContainer extends React.PureComponent {
   async customInit(engine) {
-    // this adds the preset to tsParticles, you can safely use the
-    await loadFirePreset(engine);
+    await loadFull(engine);
   }
 
   render() {
     const options = {
-      preset: "fire",
+      fullScreen: true,
+      background: {
+        image: "linear-gradient(180deg, #000000 5%, #808080 130%)"
+      },
+
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: {
+            enable: false,
+            mode: "repulse"
+          },
+          onclick: {
+            enable: false,
+            mode: "push"
+          },
+          resize: true
+        },
+        modes: {
+          grab: {
+            distance: 800,
+            line_linked: {
+              opacity: 1
+            }
+          },
+          bubble: {
+            distance: 790,
+            size: 79,
+            duration: 2,
+            opacity: 0.8,
+            speed: 3
+          },
+          repulse: {
+            distance: 400,
+            duration: 0.4
+          },
+          push: {
+            particles_nb: 4
+          },
+          remove: {
+            particles_nb: 2
+          }
+        }
+      },
+      retina_detect: true
     };
 
-    return <Particles id="tsparticles" options={options} init={this.customInit.bind(this)} />;
+    const particleStyle = {
+      position: 'absolute', // Necessary for z-index to work
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      zIndex: 0 // Set z-index to -1
+    };
+
+    return <Particles id="tsparticles" style={particleStyle} options={options} init={this.customInit.bind(this)} />;
   }
 }
 
-
-
-// import React from 'react'
-// import Particles from "react-tsparticles";
+// import React from 'react';
+// import Particles from "react-tsparticles"; // Ensure this package is installed
 // import { loadFull } from "tsparticles";
 // import { loadFirePreset } from "tsparticles-preset-fire";
 
 
-// const ParticlesBG = () => {
-
-//   const  loadParticles = async (arg) => {
-//     await loadFull(arg)
+// export class ParticlesContainer extends React.PureComponent {
+//   // this customizes the component tsParticles installation
+//   async customInit(engine) {
+//     // this adds the preset to tsParticles, you can safely use the
+//     await loadFirePreset(engine);
 //   }
-//   return (
-//     <div>
-//     <Particles
-//       id="tsparticles"
-//       init={loadParticles}
 
-//       options={{
-//         "fullScreen": {
-//             "enable": true,
-//             "zIndex": 1
-//         },
-//         "particles": {
-//             "number": {
-//                 "value": 10,
-//                 "density": {
-//                     "enable": false,
-//                     "value_area": 800
-//                 }
-//             },
-//             "color": {
-//                 "value": "#fff"
-//             },
-//             "shape": {
-//                 "type": "star",
-//                 "options": {
-//                     "sides": 5
-//                 }
-//             },
-//             "opacity": {
-//                 "value": 0.8,
-//                 "random": false,
-//                 "anim": {
-//                     "enable": false,
-//                     "speed": 1,
-//                     "opacity_min": 0.1,
-//                     "sync": false
-//                 }
-//             },
-//             "size": {
-//                 "value": 4,
-//                 "random": false,
-//                 "anim": {
-//                     "enable": false,
-//                     "speed": 40,
-//                     "size_min": 0.1,
-//                     "sync": false
-//                 }
-//             },
-//             "rotate": {
-//                 "value": 0,
-//                 "random": true,
-//                 "direction": "clockwise",
-//                 "animation": {
-//                     "enable": true,
-//                     "speed": 5,
-//                     "sync": false
-//                 }
-//             },
-//             "line_linked": {
-//                 "enable": true,
-//                 "distance": 600,
-//                 "color": "#ffffff",
-//                 "opacity": 0.4,
-//                 "width": 2
-//             },
-//             "move": {
-//                 "enable": true,
-//                 "speed": 2,
-//                 "direction": "none",
-//                 "random": false,
-//                 "straight": false,
-//                 "out_mode": "out",
-//                 "attract": {
-//                     "enable": false,
-//                     "rotateX": 600,
-//                     "rotateY": 1200
-//                 }
-//             }
-//         },
-//         "interactivity": {
-//             "events": {
-//                 "onhover": {
-//                     "enable": true,
-//                     "mode": ["grab"]
-//                 },
-//                 "onclick": {
-//                     "enable": false,
-//                     "mode": "bubble"
-//                 },
-//                 "resize": true
-//             },
-//             "modes": {
-//                 "grab": {
-//                     "distance": 400,
-//                     "line_linked": {
-//                         "opacity": 1
-//                     }
-//                 },
-//                 "bubble": {
-//                     "distance": 400,
-//                     "size": 40,
-//                     "duration": 2,
-//                     "opacity": 8,
-//                     "speed": 3
-//                 },
-//                 "repulse": {
-//                     "distance": 200
-//                 },
-//                 "push": {
-//                     "particles_nb": 4
-//                 },
-//                 "remove": {
-//                     "particles_nb": 2
-//                 }
-//             }
-//         },
-//         "retina_detect": true,
-//         "background": {
-//             "color": "#111",
-//             "image": "",
-//             "position": "50% 50%",
-//             "repeat": "no-repeat",
-//             "size": "cover"
-//         }
-//     }}/>
-//   </div>
-//   )
+//   render() {
+//     const options = {
+//       preset: "fire",
+//     };
+
+//     return <Particles id="tsparticles" options={options} init={this.customInit.bind(this)} />;
+//   }
 // }
 
-// export default ParticlesBG;
+
+// https://codesandbox.io/s/particles-js-4p9jf?file=/src/App.js:6904-6936

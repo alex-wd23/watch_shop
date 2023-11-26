@@ -26,6 +26,7 @@ const Home = () => {
         width: window.innerWidth,
         height: window.innerHeight,
       });
+      
     };
 
     // Adding an event listener for the resize event.
@@ -47,7 +48,7 @@ const Home = () => {
     <div className='Home'>
       <div style={containerStyles}>
         {/* ImageSlider component displaying a series of slides */}
-        <ImageSlider slides={slides} parentWidth={viewportDimensions.width}/>
+        <ImageSlider slides={slides} parentWidth={viewportDimensions.width} autoSlide={true}/>
       </div>
       {/* ShopBanner component for showcasing promotions or information */}
       <ShopBanner />

@@ -9,6 +9,7 @@ import Account from './pages/Account/Account';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import LoginModal from './components/LoginModal/LoginModal';
 import Shop from './components/Shop/Shop.js';
+import axios from 'axios';
 
 
 
@@ -17,13 +18,13 @@ import Shop from './components/Shop/Shop.js';
 function App() {
  
   const [showModal, setShowModal] = useState(false);
-  
+
 
   return (
     <div>
       <HashRouter basename="/">
         <Routes>
-          <Route path='/' element={<Layout />}>  
+          <Route path='/' element={<Layout  />}>  
             <Route index element={<Home />}/>
             <Route path="/about" element={<About />}/>
             <Route path="/contact" element={<Contact />}/> 
