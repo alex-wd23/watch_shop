@@ -1,0 +1,22 @@
+.pagination {
+  margin-top: 2vh;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Align items vertically in the center */
+  list-style: none;
+  padding: 0;
+}
+
+.pagArrows {
+  font-size: 2em;
+  color: white;
+  cursor: pointer;
+  margin: 0 10px; /* Add some horizontal spacing around the arrows */
+}
+
+/* Additional style for the page number */
+.pageNumber {
+  font-size: 1.5em; /* Adjust the font size as needed */
+  color: white;
+  cursor: default;
+}

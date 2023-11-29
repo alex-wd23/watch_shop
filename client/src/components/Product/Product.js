@@ -1,6 +1,7 @@
 import { useState, React } from 'react';
 import ProductDescriptionModal from '../ProductDescriptionModal/ProductDescriptionModal.js';
 import './Product.css';
+import { useCart } from '../../contexts/CartContext/CartContext.js';
 
 const Product = ({ products }) => {
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -8,6 +9,15 @@ const Product = ({ products }) => {
   const showProduct = (product) => {
     setSelectedProduct(product); // Set the selected product
   }
+
+  const { dispatch } = useCart();
+  const { cart } = useCart();
+
+  const addToCart = (product) => {
+    console.log('Adding to cart:', product);
+    console.log('cart items', cart)
+    dispatch({ type: 'ADD_ITEM', payload: product });
+  };
 
   return (
     <div className="productContainer">
@@ -18,7 +28,7 @@ const Product = ({ products }) => {
           </div>
           <div>{product.name}</div>
           <div>${product.price}</div>
-          <button className='button-87'>ADD TO CART</button>
+          <button className='button-87' onClick={() => addToCart(product)}>ADD TO CART</button>
         </div>
       ))}
 

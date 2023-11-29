@@ -2,17 +2,24 @@ import React, { useEffect, useState } from 'react';
 import './Shop.css';
 import ShopFilter from '../ShopFilter/ShopFilter';
 import Product from '../Product/Product';
-import productsTable from './../../Database/Database';
 import Scroll from '../Scroll/Scroll';
 import axios from 'axios';
 import ParticlesContainer from '../Particles/ParticlesBG';
-
-// const displayedProducts = productsTable.filter((product)=> {return product;} )
+import Pagination from '../Pagination/Pagination';
 
 const Shop = () => {
 
   const [displayedProducts, setDisplayedProducts] = useState([]);
-  
+  const [currentPage, setCurrentPage] = useState(1);
+  const [firstProductIndex, setFirstProductIndex] = useState(0);
+  const [lastProductIndex, setLastProductIndex] = useState(24);
+
+  const resetPagination = () => {
+    setFirstProductIndex(0);
+    setLastProductIndex(24);
+    setCurrentPage(1);
+  };
+ 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -25,7 +32,6 @@ const Shop = () => {
     fetchProducts();
   },[])
 
-
   return (
     
     <div className="shop-page"> 
@@ -35,13 +41,14 @@ const Shop = () => {
       </header>
       <hr className='hr-shop'></hr>
       <div className="main-content">       
-        <ShopFilter setDisplayedProducts={setDisplayedProducts}/>
+        <ShopFilter setDisplayedProducts={setDisplayedProducts} onFilterChange={resetPagination}/>
         <div className='products'>
           <Scroll>
-            <Product products={displayedProducts} /> 
+            <Product products={displayedProducts.slice(firstProductIndex, lastProductIndex)} /> 
           </Scroll> 
         </div>
       </div>
+      <Pagination setFirstProductIndex={setFirstProductIndex} setLastProductIndex={setLastProductIndex} displayedProducts={displayedProducts} setCurrentPage={setCurrentPage} currentPage={currentPage}/>
     </div>
     
   );

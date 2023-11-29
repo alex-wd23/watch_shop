@@ -4,7 +4,7 @@ import DropdownWithCheckboxes from '../DropDownWithCheckboxes/DropdownWithCheckb
 import PriceRange from './PriceRange.js';
 import axios from 'axios';
 
-const ShopFilter = ({setDisplayedProducts}) => {
+const ShopFilter = ({setDisplayedProducts, onFilterChange}) => {
   const [filters, setFilters] = useState({
     beltMaterial: [],
     dialSize: [],
@@ -44,7 +44,7 @@ const ShopFilter = ({setDisplayedProducts}) => {
         params: filters
       });
       setDisplayedProducts(response.data);
-      console.log(response.data)
+      onFilterChange(); // Reset pagination
       
     } catch (error) {
       console.error('Failed to fetch filtered products:', error);
@@ -56,6 +56,7 @@ const ShopFilter = ({setDisplayedProducts}) => {
     try {
       const response = await axios.get("http://localhost:3001/products");
       setDisplayedProducts(response.data);
+      onFilterChange(); // Reset pagination
     } catch (error) {
       console.error('Failed to fetch products:', error);
     }

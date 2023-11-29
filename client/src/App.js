@@ -9,7 +9,7 @@ import Account from './pages/Account/Account';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import LoginModal from './components/LoginModal/LoginModal';
 import Shop from './components/Shop/Shop.js';
-import axios from 'axios';
+import { CartProvider } from './contexts/CartContext/CartContext.js';
 
 
 
@@ -22,6 +22,7 @@ function App() {
 
   return (
     <div>
+      <CartProvider>
       <HashRouter basename="/">
         <Routes>
           <Route path='/' element={<Layout  />}>  
@@ -43,6 +44,7 @@ function App() {
           </Route>
         </Routes>
       </HashRouter>
+      </CartProvider>
     </div>
   );
 }

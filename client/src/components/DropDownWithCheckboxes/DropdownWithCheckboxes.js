@@ -2,7 +2,7 @@ import React from 'react';
 import './DropdownWithCheckboxes.css';
 import { useState } from 'react';
 
-const DropdownWithCheckboxes = ({ title, options, selectedFilter, handleFilterChange,filters, value }) => {
+const DropdownWithCheckboxes = ({ title, options, selectedFilter, handleFilterChange }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toCamelCase = (string) => {

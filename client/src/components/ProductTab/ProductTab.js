@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './ProductTab.css';
 import Product from '../Product/Product';
-import productsTable from './../../Database/Database';
+
 
 export const ProductTab = ({ parentWidth }) => {
   // State to manage the active button and filtered products
