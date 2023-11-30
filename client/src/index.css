@@ -5,7 +5,36 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-    scrollbar-width: thin;  
+  scrollbar-width: thin;  
+
+    
+}
+
+/* Styles the entire scrollbar */
+::-webkit-scrollbar {
+  width: 12px;  /* Width of the vertical scrollbar */
+  height: 8px; /* Height of the horizontal scrollbar */
+  border-radius: 6px;
+}
+
+/* Styles the track of the scrollbar */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Track color */
+  border-radius: 6px;
+  padding: 2px 0; /* Add padding at the top and bottom */
+}
+
+/* Styles the thumb of the scrollbar */
+::-webkit-scrollbar-thumb {
+  background: #888; /* Thumb color */
+  border-radius: 6px;
+  border: 2px solid transparent; /* Makes the thumb's size effectively the same */
+  background-clip: content-box; /* Prevents the background color from bleeding into the border area */
+}
+
+/* Styles the thumb of the scrollbar when hovering over it */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Thumb color when hovered */
 }
 
 
