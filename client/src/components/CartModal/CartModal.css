@@ -1,0 +1,42 @@
+.cart-modal-container {
+    position: fixed;
+    z-index: 1000; /* Ensure it's above other content */
+    left: 0;
+    top: 0;
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black for darkening effect */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal Content Box */
+.cart-modal-content {
+    background-color: white; /* White background for the content */
+    padding: 20px; /* Padding around the content */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    max-width: 600px; /* Maximum width of the modal */
+    width: 90%; /* Responsive width */
+    text-align: center; /* Center align the text */
+    animation: scaleUp 0.3s ease-in-out; /* Animation when modal opens */
+    height: 500px;
+
+}
+
+.close-modal {
+    cursor: pointer;
+    font-size: 2em;
+}
+/* Simple scaling animation */
+@keyframes scaleUp {
+    from {
+        transform: scale(0.5); /* Start from half the size */
+        opacity: 0; /* Start from fully transparent */
+    }
+    to {
+        transform: scale(1); /* Scale to full size */
+        opacity: 1; /* Fully visible */
+    }
+}

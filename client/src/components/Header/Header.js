@@ -1,15 +1,17 @@
-import {React, useState, useEffect} from 'react';
+import {React, useState } from 'react';
 import './Header.css';
 import { Link } from 'react-router-dom';
 import LoginModal from '../LoginModal/LoginModal';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import CartModal from '../CartModal/CartModal';
 
 
 const Header = () => {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [showCart, setShowCart] = useState(false);
 
   const checkAuthStatus = async () => {
   
@@ -43,6 +45,9 @@ const Header = () => {
     navigate('/shop')
   }
 
+  const showCartModal = () => {
+    setShowCart(true);
+  }
 
   return (
     <header>
@@ -62,12 +67,13 @@ const Header = () => {
         </ul>
         <div className='buttons'>
           <Link to="/"><img className='searchLink' src="/watch_shop/search_icon.ico" alt="seracIcon" /></Link>
-          <Link to="/"><img className='cartIcon' src="/watch_shop/cart_icon.png" alt="seracIcon" /></Link>
+          <Link to="#"><img className='cartIcon' src="/watch_shop/cart_icon.png" alt="seracIcon" onClick={showCartModal} /></Link>
           <div>
           <img className='accountIcon' src="/watch_shop/account_icon.png" alt="accountIcon" onClick={handleAccountIconClick} />
           </div>
         </div>
       </nav>
+      {showCart && <CartModal setShowCart={setShowCart}/>}
       <LoginModal showModal={showModal} setShowModal={setShowModal} />
     </header>
   );

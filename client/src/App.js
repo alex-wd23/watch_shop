@@ -12,12 +12,9 @@ import Shop from './components/Shop/Shop.js';
 import { CartProvider } from './contexts/CartContext/CartContext.js';
 
 
-
-//https://www.casio.com/intl/watches/gshock/
-
 function App() {
  
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);  
 
 
   return (

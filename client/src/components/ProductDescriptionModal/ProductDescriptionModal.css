@@ -30,6 +30,7 @@
     overflow-y: auto; /* Add vertical scroll */
     overflow-x: hidden; /* Hide horizontal scroll */   
     margin: 3vw;
+    animation: scaleUp 0.3s ease-in-out; /* Animation when modal opens */
 }
 
 .productModal .sliderStyles   {
@@ -134,6 +135,19 @@
     background-color: #ddd; /* Hover effect for rows */
   }
 
+
+
+
+@keyframes scaleUp {
+    from {
+        transform: scale(0.5); /* Start from half the size */
+        opacity: 0; /* Start from fully transparent */
+    }
+    to {
+        transform: scale(1); /* Scale to full size */
+        opacity: 1; /* Fully visible */
+    }
+}
 
   @media (max-width: 768px)  {
 

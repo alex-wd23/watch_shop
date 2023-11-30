@@ -21,6 +21,7 @@
     text-align: center;
     width: 400px;
     position: relative;
+    animation: scaleUp 0.3s ease-in-out; /* Animation when modal opens */
 }
   
 .close {
@@ -82,4 +83,18 @@ h2 {
 
 .successText {
     color:green;
+}
+
+
+@keyframes scaleUp {
+    from {
+        transform: scale(0.5); /* Start from half the size */
+        opacity: 0; /* Start from fully transparent */
+        
+    }
+    to {
+        transform: scale(1); /* Scale to full size */
+        opacity: 1; /* Fully visible */
+        
+    }
 }
