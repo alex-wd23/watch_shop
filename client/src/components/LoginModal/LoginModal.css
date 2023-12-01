@@ -86,6 +86,10 @@ h2 {
 }
 
 
+.modalContent.scale-down {
+    animation: scaleDown 0.3s ease-in-out forwards; /* Use 'forwards' to retain the final state */
+}
+
 @keyframes scaleUp {
     from {
         transform: scale(0.5); /* Start from half the size */
@@ -96,5 +100,17 @@ h2 {
         transform: scale(1); /* Scale to full size */
         opacity: 1; /* Fully visible */
         
+    }
+}
+
+
+@keyframes scaleDown {
+    from {
+        transform: scale(1); /* Start from full size */
+        opacity: 1; /* Start from fully visible */
+    }
+    to {
+        transform: scale(0.5); /* Scale down to half the size */
+        opacity: 0; /* Become fully transparent */
     }
 }

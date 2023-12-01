@@ -13,9 +13,6 @@ import { CartProvider } from './contexts/CartContext/CartContext.js';
 
 
 function App() {
- 
-  const [showModal, setShowModal] = useState(false);  
-
 
   return (
     <div>
@@ -30,7 +27,7 @@ function App() {
             <Route path="/reset/:resetToken" element={ 
             <>
             <Home />
-            <LoginModal setShowModal={setShowModal} />
+            <LoginModal  />
             </>
             }/>
             <Route path="/account" element={

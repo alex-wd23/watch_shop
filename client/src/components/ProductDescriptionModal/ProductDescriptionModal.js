@@ -5,6 +5,7 @@ import ImageSlider from '../ImageSlider/ImageSlider';
 const ProductDescriptionModal = ({ product, onClose }) => {
 
   const [currentTab, setCurrentTab] = useState('description');
+  const [closing, setClosing] = useState(false);
 
   const slides = [
     { url: "/watch_shop/image-1.jpg", title: "Watch 1" },
@@ -25,6 +26,14 @@ const ProductDescriptionModal = ({ product, onClose }) => {
       height: window.innerHeight,
     });
   
+   const handleClose = () => {
+        setClosing(true); // Start closing animation
+        setTimeout(() => {
+            onClose(); // Actual close action after animation
+            setClosing(false); // Reset the state (if the modal is opened again)
+        }, 300); // Duration should match the CSS animation
+    };
+  
     // useEffect hook to handle window resize events.
     useEffect(() => {
       const handleResize = () => {
@@ -44,12 +53,27 @@ const ProductDescriptionModal = ({ product, onClose }) => {
       };
     }, []);
 
+        // useEffect hook to handle ESC key press
+    useEffect(() => {
+      const handleKeyDown = (event) => {
+          if (event.keyCode === 27) { // 27 is the key code for the ESC key
+            handleClose(); // Call the onClose function when ESC key is pressed
+          }
+      };
+
+      // Add event listener
+      window.addEventListener('keydown', handleKeyDown);
+
+      // Cleanup the event listener on unmount
+      return () => {
+          window.removeEventListener('keydown', handleKeyDown);
+      };
+    }, [handleClose])
+
     return (
       <div className="productModal">
-        <div className="productModalContent">     
-        <span className="close" onClick={() => {onClose()}}>
-            &times;
-          </span>
+        <div className={`productModalContent ${closing ? 'scale-down' : ''}`}>
+        <span className="close" onClick={handleClose}>&times;</span>
           <h1>{product.name}</h1>
           <ImageSlider slides={slides} parentWidth={viewportDimensions.width * 0.75}  autoSlide={false}/>
           <div className='options'>

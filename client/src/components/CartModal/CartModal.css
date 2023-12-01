@@ -1,42 +1,110 @@
 .cart-modal-container {
     position: fixed;
-    z-index: 1000; /* Ensure it's above other content */
-    left: 0;
+    z-index: 1000;
+    right: 0;
     top: 0;
-    width: 100vw; /* Full viewport width */
-    height: 100vh; /* Full viewport height */
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black for darkening effect */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex; /* Add this */
+    justify-content: flex-end; /* Aligns children to the right */
 }
 
-/* Modal Content Box */
 .cart-modal-content {
-    background-color: white; /* White background for the content */
-    padding: 20px; /* Padding around the content */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    max-width: 600px; /* Maximum width of the modal */
-    width: 90%; /* Responsive width */
-    text-align: center; /* Center align the text */
-    animation: scaleUp 0.3s ease-in-out; /* Animation when modal opens */
-    height: 500px;
-
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 30%; /* Adjust width as needed */
+    text-align: center;
+    animation: slideInRight 0.5s ease-in-out;
+    height: 100%;
+    position: absolute; /* Position absolutely within the container */
+    right: 0; /* Stick to the right */
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
 }
 
 .close-modal {
+    position: absolute;
     cursor: pointer;
-    font-size: 2em;
+    top: 1px; /* Adjust as needed */
+    right: 12px;
+    font-size: 1.7em;
+    color: black;
+    
 }
+
+.cart-modal-content.slide-out {
+    animation: slideOutRight 0.5s ease-in-out forwards; /* Add 'forwards' to keep the state at the end of the animation */
+}
+
+.cart-products {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    gap: 10px;
+    width: 100%; /* Ensure full width */
+}
+
+.cart-item {
+    display: flex;
+    flex-direction: row; /* Keep the item's content in a row */
+    align-items: center;
+    justify-content: space-between;
+    width: 100%; /* Full width of the container */
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.cart-item-details {
+    display: flex;
+    flex-direction: column; /* Stack item details vertically */
+    align-items: center; /* Center align the details */
+    flex-grow: 1;
+}
+
+.cart-item-name, .cart-item-price, .cart-item-quantity, .cart-item-subtotal {
+    margin-bottom: 5px; /* Add some spacing between details */
+}
+
+.cart-total {
+    text-align: right;
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+
+/* Adjust button style as needed */
+.finish-order-button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    font-size: 1em;
+    cursor: pointer;
+    /* Add other button styles */
+}
+
 /* Simple scaling animation */
-@keyframes scaleUp {
+@keyframes slideInRight {
     from {
-        transform: scale(0.5); /* Start from half the size */
-        opacity: 0; /* Start from fully transparent */
+        transform: translateX(100%); /* Start from off-screen to the right */
+        opacity: 0;
     }
     to {
-        transform: scale(1); /* Scale to full size */
-        opacity: 1; /* Fully visible */
+        transform: translateX(0); /* End at the current position */
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0); /* End at the current position */
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%); /* Start from off-screen to the right */
+        opacity: 0;
     }
 }

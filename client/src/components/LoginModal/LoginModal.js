@@ -22,6 +22,7 @@ const LoginModal = ({ showModal, setShowModal }) => {
     
     const [error, setError] = useState(null);
     const [successMessage, setSuccessMessage] = useState(null);
+    const [closing, setClosing] = useState(false);
 
     useEffect(() => {
         const verifyToken = async () => {
@@ -47,11 +48,6 @@ const LoginModal = ({ showModal, setShowModal }) => {
         verifyToken();
       }, [resetToken, setShowModal]);
 
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-        setError(null);
-        setSuccessMessage(null);
-    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -205,6 +201,47 @@ const LoginModal = ({ showModal, setShowModal }) => {
         setSuccessMessage(null);
     };
 
+    const handleClose = () => {
+        setClosing(true); // Trigger closing animation
+        setTimeout(() => {
+            setShowModal(false);
+            setClosing(false); // Reset closing state
+            setFormData({
+                username: '',
+                password: '',
+                newPassword: '',
+                confirmPassword: '',
+                email: '',
+                form: 'login',
+                resetToken: ''
+            });
+            setError(null);
+            setSuccessMessage(null);
+        }, 300); // This duration should match the CSS animation duration
+    };
+
+    useEffect(() => {
+    // Function to handle ESC key press
+        const handleEsc = (event) => {
+            if (event.keyCode === 27) { // 27 is the key code for ESC key
+                handleClose(); // Call handleClose when ESC key is pressed
+            }
+        };
+
+        // Add event listener
+        document.addEventListener('keydown', handleEsc);
+
+        // Cleanup event listener
+        return () => {
+            document.removeEventListener('keydown', handleEsc);
+        };
+    }, [handleClose]); // Add handleClose as a dependency
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+        setError(null);
+        setSuccessMessage(null);
+    };
     
 
     const usernameAndPassword = (
@@ -218,26 +255,8 @@ const LoginModal = ({ showModal, setShowModal }) => {
   return (
     showModal && (
       <div className="loginModal">
-        <div className="modalContent">
-          <span
-            className="close"
-            onClick={() => {
-                setFormData({
-                  username: '',
-                  password: '',
-                  newPassword: '',
-                  confirmPassword: '',
-                  email: '',
-                  form: 'login',
-                  resetToken: ''
-                });
-                setShowModal(false);
-                setError(null);
-                setSuccessMessage(null);
-              }}
-          >
-            &times;
-          </span>
+        <div className={`modalContent ${closing ? 'scale-down' : ''}`}>
+          <span className="close" onClick={handleClose}>&times;</span>
           <h2>{formData.form === 'login' ? 'Login' : formData.form === 'forgot' ? 'Forgot Password' : formData.form === 'reset' ? "Reset Password" : 'Register'}</h2>
           <form onSubmit={handleSubmit}>
             {formData.form === 'login' && <Login usernameAndPassword={usernameAndPassword} formData={formData} handleChange={handleChange} handleForgot={handleForgot} handleRegister={handleRegister} />}

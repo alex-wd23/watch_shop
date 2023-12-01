@@ -12,7 +12,7 @@ body {
 
 /* Styles the entire scrollbar */
 ::-webkit-scrollbar {
-  width: 12px;  /* Width of the vertical scrollbar */
+  width: 10px;  /* Width of the vertical scrollbar */
   height: 8px; /* Height of the horizontal scrollbar */
   border-radius: 6px;
 }
@@ -21,7 +21,7 @@ body {
 ::-webkit-scrollbar-track {
   background: #f1f1f1; /* Track color */
   border-radius: 6px;
-  padding: 2px 0; /* Add padding at the top and bottom */
+  padding: 1px 0; /* Add padding at the top and bottom */
 }
 
 /* Styles the thumb of the scrollbar */
