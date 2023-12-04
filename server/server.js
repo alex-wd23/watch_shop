@@ -259,7 +259,14 @@ app.post("/resetpassword", async (req, res) => {
 app.get("/products", async (req, res) => {
     try {
         const allProducts = await pool.query("SELECT * FROM watches");
-        res.json(allProducts.rows);
+
+        // Convert the price to a number
+        const productsWithConvertedPrices = allProducts.rows.map(product => ({
+          ...product,
+          price: parseFloat(product.price)
+        }));
+
+        res.json(productsWithConvertedPrices);
     } catch (err) {
         console.error(err.message);
         res.status(500).send("Server error");

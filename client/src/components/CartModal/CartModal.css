@@ -50,14 +50,16 @@
 }
 
 .cart-item {
+    position: relative; /* This ensures that the remove button can be positioned relative to the cart item */
     display: flex;
-    flex-direction: row; /* Keep the item's content in a row */
+    flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    width: 100%; /* Full width of the container */
+    width: 100%;
     padding: 10px;
     border-bottom: 1px solid #ccc;
 }
+
 
 .cart-item-details {
     display: flex;
@@ -86,6 +88,23 @@
     /* Add other button styles */
 }
 
+
+.cart-item-image {
+    max-width: 100px; /* or any size you prefer */
+    max-height: 100px;
+    object-fit: contain; /* This ensures the image maintains its aspect ratio */
+  }
+
+  .remove-item-btn {
+    position: absolute; /* Position the button absolutely within the cart-item */
+    top: 10px; /* Adjust as needed */
+    right: 10px; /* Position towards the right */
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 20px;
+    color: #ff0000; /* Optional: Add color to make it more noticeable */
+}
 /* Simple scaling animation */
 @keyframes slideInRight {
     from {

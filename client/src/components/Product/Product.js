@@ -14,8 +14,6 @@ const Product = ({ products }) => {
   const { cart } = useCart();
 
   const addToCart = (product) => {
-    console.log('Adding to cart:', product);
-    console.log('cart items', cart)
     dispatch({ type: 'ADD_ITEM', payload: product });
   };
 
