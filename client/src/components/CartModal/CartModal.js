@@ -53,7 +53,7 @@ const CartModal = ({ setShowCart }) => {
                     <div className="cart-item-details">
                     <div className="cart-item-name">{item.name}</div>
                     <div className="cart-item-description">{item.description}</div> {/* Assuming description is a field in your product object */}
-                    <div className="cart-item-price">${item.price.toFixed(2)}</div>
+                    {/* <div className="cart-item-price">${item.price.toFixed(2)}</div> */}
                     <div className="cart-item-quantity">Qty: {item.quantity}</div>
                     <button className="remove-item-btn" onClick={() => removeFromCart(item.id)}>&times;</button>
                     <div className="cart-item-subtotal">${(item.price * item.quantity).toFixed(2)}</div>
