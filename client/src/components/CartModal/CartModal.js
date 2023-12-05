@@ -34,6 +34,10 @@ const CartModal = ({ setShowCart }) => {
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, [onClose]);
 
+    const addToCart = (itemId) => {
+        dispatch({ type: 'ADD_ITEM', payload: itemId });
+      };
+
     const removeFromCart = (itemId) => {
         dispatch({ type: 'REMOVE_ITEM', payload: itemId });
       };
@@ -49,14 +53,16 @@ const CartModal = ({ setShowCart }) => {
                 {cart.items.map(item => (
                 <div className="cart-item" key={item.id}>
                     <img src={item.image_url} alt={item.name} className="cart-item-image" />
-                    
                     <div className="cart-item-details">
                     <div className="cart-item-name">{item.name}</div>
                     <div className="cart-item-description">{item.description}</div> {/* Assuming description is a field in your product object */}
-                    <div className="cart-item-price">${item.price.toFixed(2)}</div>
-                    <div className="cart-item-quantity">Qty: {item.quantity}</div>
+                    <div className="cart-item-price">${(item.price * item.quantity).toFixed(2)}</div>
+                    <div className="cart-item-quantity">
+                    <p onClick={() => removeFromCart(item.id)}>-</p>
+                    <div>{item.quantity}</div>
+                    <p onClick={() => addToCart(item.id)}>+</p>
+                    </div>
                     <button className="remove-item-btn" onClick={() => removeFromCart(item.id)}>&times;</button>
-                    <div className="cart-item-subtotal">${(item.price * item.quantity).toFixed(2)}</div>
                     </div>
                 </div>
                 ))}

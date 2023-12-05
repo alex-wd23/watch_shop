@@ -68,6 +68,11 @@
     flex-grow: 1;
 }
 
+.cart-item-quantity {
+    display: flex;
+    gap: 1vw;
+}
+
 .cart-item-name, .cart-item-price, .cart-item-quantity, .cart-item-subtotal {
     margin-bottom: 5px; /* Add some spacing between details */
 }
