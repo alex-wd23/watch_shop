@@ -10,26 +10,46 @@ const Product = ({ products }) => {
     setSelectedProduct(product); // Set the selected product
   }
 
-  const { dispatch } = useCart();
-  const { cart } = useCart();
+  
+  const { cart , dispatch} = useCart();
 
   const addToCart = (product) => {
     dispatch({ type: 'ADD_ITEM', payload: product });
   };
 
+  const removeFromCart = (itemId) => {
+    dispatch({ type: 'REMOVE_ITEM', payload: itemId });
+  };
+
+  const isProductInCart = (productId) => {
+    return cart.items.some(item => item.id === productId);
+  };
+
+  const getProductQuantity = (productId) => {
+    const productInCart = cart.items.find(item => item.id === productId);
+    return productInCart ? productInCart.quantity : 0;
+  };
+
   return (
     <div className="productContainer">
-      {products.map((product) => (
-        <div className="product" key={product.id}>
-          <div className="imageContainer" >
-            <img className='productImage' src={product.image_url} alt={product.name} onClick={() => showProduct(product)} />
-          </div>
-          <div>{product.name}</div>
-          <div>${product.price}</div>
-          <button className='button-87' onClick={() => addToCart(product)}>ADD TO CART</button>
+     {products.map((product) => (
+      <div className="product" key={product.id}>
+        <div className="imageContainer" >
+          <img className='productImage' src={product.image_url} alt={product.name} onClick={() => showProduct(product)} />
         </div>
+        <div>{product.name}</div>
+        <div>${product.price}</div>
+        {isProductInCart(product.id) ? (
+          <div className="quantity-control">
+            <p className="quantity-button" onClick={() => removeFromCart(product.id)}>-</p>
+            <div className="quantity-display">{getProductQuantity(product.id)}</div>
+            <p className="quantity-button" onClick={() => addToCart(product)}>+</p>
+          </div>
+        ) : (
+          <button className='button-87' onClick={() => addToCart(product)}>ADD TO CART</button>
+        )}
+      </div>
       ))}
-
       {selectedProduct && <ProductDescriptionModal product={selectedProduct} onClose={() => setSelectedProduct(null)} />}
     </div>
   );

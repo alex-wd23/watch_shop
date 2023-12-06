@@ -35,8 +35,13 @@ const CartModal = ({ setShowCart }) => {
     }, [onClose]);
 
     const addToCart = (itemId) => {
-        dispatch({ type: 'ADD_ITEM', payload: itemId });
-      };
+        // Find the full product object based on itemId
+        const productToAdd = cart.items.find(product => product.id === itemId);
+        if (productToAdd) {
+            dispatch({ type: 'ADD_ITEM', payload: productToAdd });
+        }
+    };
+    
 
     const removeFromCart = (itemId) => {
         dispatch({ type: 'REMOVE_ITEM', payload: itemId });
@@ -57,12 +62,11 @@ const CartModal = ({ setShowCart }) => {
                     <div className="cart-item-name">{item.name}</div>
                     <div className="cart-item-description">{item.description}</div> {/* Assuming description is a field in your product object */}
                     <div className="cart-item-price">${(item.price * item.quantity).toFixed(2)}</div>
-                    <div className="cart-item-quantity">
-                    <p onClick={() => removeFromCart(item.id)}>-</p>
-                    <div>{item.quantity}</div>
-                    <p onClick={() => addToCart(item.id)}>+</p>
+                    <div className="quantity-control">
+                    <p className="quantity-button" onClick={() => removeFromCart(item.id)}>-</p>
+                    <div className="quantity-display">{item.quantity}</div>
+                    <p className="quantity-button" onClick={() => addToCart(item.id)}>+</p>
                     </div>
-                    <button className="remove-item-btn" onClick={() => removeFromCart(item.id)}>&times;</button>
                     </div>
                 </div>
                 ))}
