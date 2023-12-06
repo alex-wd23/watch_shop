@@ -38,24 +38,160 @@
   max-height: 25vh;
   max-width: 10vw;
   overflow: hidden; /*Hide any overflowing content*/
+  position: relative;  
+
   
 }
 
-.productImage {
-  /* Set the image size to 100% to fill the container */
-  max-width: 100%;
-  max-height: 100%;
-  transition: transform 0.3s ease-in-out; /* Add a smooth transition effect */
-  overflow: hidden;
-  border-radius: 10%;
+
+.imageContainer::before,
+.imageContainer::after {
+  content: '';
+  position: absolute;
+  background: transparent; /* Background is transparent by default */
+  opacity: 0; /* Elements are fully transparent by default */
+  transition: opacity 0.3s ease-in-out;
 }
 
-.productImage:hover {
-  /* Apply a scale of 1.2 (20% zoom) on hover */
-  transform: scale(1.2);
-  border-radius: 1em;
+/* Top left corner horizontal line */
+.imageContainer::before {
+  top: 0;
+  left: 0;
+  width: 20px; /* Length of the corner line */
+  height: 2px; /* Thickness of the line */
+  border-top: 2px solid white; /* Border for the line */
+}
+
+/* Bottom right corner horizontal line */
+.bottom-right {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 20px; /* Length of the corner line */
+  height: 2px; /* Thickness of the line */
+  background: white; /* Background color for the line */
+  opacity: 0; /* Fully transparent by default */
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Bottom right corner vertical line */
+.bottom-right-vertical {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 2px; /* Thickness of the line */
+  height: 20px; /* Length of the corner line */
+  background: white; /* Background color for the line */
+  opacity: 0; /* Fully transparent by default */
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Bottom left corner horizontal line */
+.bottom-left {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 20px; /* Length of the corner line */
+  height: 2px; /* Thickness of the line */
+  background: white; /* Background color for the line */
+  opacity: 0; /* Fully transparent by default */
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Bottom left corner vertical line */
+.bottom-left-vertical {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 2px; /* Thickness of the line */
+  height: 20px; /* Length of the corner line */
+  background: white; /* Background color for the line */
+  opacity: 0; /* Fully transparent by default */
+  transition: opacity 0.3s ease-in-out;
+}
+
+
+
+/* Reveal the corner lines on hover */
+.imageContainer:hover::before,
+.imageContainer:hover::after,
+.imageContainer:hover .bottom-right,
+.imageContainer:hover .bottom-right-vertical,
+.imageContainer:hover .bottom-left,
+.imageContainer:hover .bottom-left-vertical
+ {
+  opacity: 1; /* Make the lines visible on hover */
+}
+
+
+/* Top right corner horizontal line */
+.top-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20px; /* Length of the corner line */
+  height: 2px; /* Thickness of the line */
+  background: white; /* Background color for the line */
+  opacity: 0; /* Fully transparent by default */
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Top right corner vertical line */
+.top-right-vertical {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 2px; /* Thickness of the line */
+  height: 20px; /* Length of the corner line */
+  background: white; /* Background color for the line */
+  opacity: 0; /* Fully transparent by default */
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Top left corner horizontal line */
+.top-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px; /* Length of the corner line */
+  height: 2px; /* Thickness of the line */
+  background: white; /* Background color for the line */
+  opacity: 0; /* Fully transparent by default */
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Top left corner vertical line */
+.top-left-vertical {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px; /* Thickness of the line */
+  height: 20px; /* Length of the corner line */
+  background: white; /* Background color for the line */
+  opacity: 0; /* Fully transparent by default */
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Reveal the corner lines on hover */
+.imageContainer:hover .top-right,
+.imageContainer:hover .top-right-vertical,
+.imageContainer:hover .top-left,
+.imageContainer:hover .top-left-vertical {
+  opacity: 1; /* Make the lines visible on hover */
+}
+
+.productImage {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.imageContainer:hover .productImage {
+  transform: scale(1.15); /* Slight scale for a subtle effect */
   cursor: pointer;
 }
+
 
 
 .button-87 {

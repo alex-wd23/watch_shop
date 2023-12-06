@@ -110,27 +110,31 @@
 }
 
 .quantity-button {
-  cursor: pointer;
-  font-size: 1.2em;
-  padding: 5px 10px;
-  border-radius: 5px;
-  border: none;
-  background-color: #4b4948;
-  color: white;
-  user-select: none;
-}
-
-.quantity-display {
+    cursor: pointer;
+    font-size: 1.2em;
+    padding: 5px 10px; /* Adjust padding to ensure uniform size */
+    border-radius: 5px;
+    border: none;
+    background-color: #4b4948;
+    color: white;
+    user-select: none;
+    width: 30px; /* Fixed width */
+    height: 30px; /* Fixed height */
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+    margin: 0 auto; /* Auto margins for horizontal centering */
+  }
+  
+  .quantity-display {
     font-size: 1.2em;
     padding: 5px;
     min-width: 30px;
     text-align: center;
-    display: flex;         /* Use flexbox for alignment */
-    align-items: center;   /* Center vertically */
-    justify-content: center;/* Center horizontally */
-    padding-bottom: 15px;
-}
-
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+  }
 /* Simple scaling animation */
 @keyframes slideInRight {
     from {

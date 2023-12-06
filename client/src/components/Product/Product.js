@@ -36,6 +36,14 @@ const Product = ({ products }) => {
       <div className="product" key={product.id}>
         <div className="imageContainer" >
           <img className='productImage' src={product.image_url} alt={product.name} onClick={() => showProduct(product)} />
+          <div className="bottom-right"></div>
+          <div className="bottom-right-vertical"></div>
+          <div className="bottom-left"></div>
+          <div className="bottom-left-vertical"></div>
+          <div className="top-left"></div>
+          <div className="top-left-vertical"></div>
+          <div className="top-right"></div>
+          <div className="top-right-vertical"></div>
         </div>
         <div>{product.name}</div>
         <div>${product.price}</div>
