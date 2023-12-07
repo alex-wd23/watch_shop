@@ -1,0 +1,142 @@
+  .checkout-container {
+    display: flex;
+    min-height: 100vh; /* Use viewport height to fill the screen vertically */
+    min-width: 100vw; /* Use full width */
+    margin: 0 auto;
+    justify-content: stretch; /* Stretch children to fill the horizontal space */
+  }
+  
+
+  
+  /* Left column styles */
+  .form-container {
+    flex: 1;
+    padding-right: 20px; /* Adjust spacing as needed */
+    background-color: white;
+    width: auto;
+    height: auto;
+
+  }
+  
+  .form-section {
+    background: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc; /* Adjust border and shadow to match your design */
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  .section-header {
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .input-row {
+    display: flex;
+    gap: 10px; /* This creates space between your inputs */
+}
+  
+.input-group {
+    position: relative;
+    margin-bottom: 15px;
+  }
+  
+  .input-group input[type="text"],
+  .input-group input[type="email"],
+  .input-group select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+  }
+  
+  .input-group label {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    transition: top 0.2s, font-size 0.2s;
+    color: #888;
+    pointer-events: none;
+    margin-top: 10px; /* Align label with text */
+    background-color: white; /* Match the input's background */
+    padding: 0 4px; /* Prevent background overlap with border */
+  }
+  
+  /* When the input is not empty */
+  .input-group input:not(:placeholder-shown) + label,
+  .input-group input:focus + label {
+    top: -20px;
+    font-size: 12px;
+    color: #333;
+  }
+  
+  .input-group input:focus {
+    outline: none;
+    border-color: #555;
+  }
+  
+  /* Style for input if placeholder is not shown - makes room for the label */
+  .input-group input:not(:placeholder-shown),
+  .input-group input:focus {
+    padding-top: 20px; /* Increase padding-top to make space for the label */
+  }
+  
+  /* Adjust the label's position if the input is autofilled */
+  .input-group input:-webkit-autofill + label {
+    top: -20px;
+    font-size: 12px;
+    color: #333;
+  }
+  
+  /* Right column styles */
+  .summary-container {
+    
+    flex: 1;
+    height:100%;
+    background-color: #ccc;
+  
+  }
+  
+  .summary-box {
+    position: sticky;
+    top: 20px;
+    background: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 20px;
+  }
+  
+  .summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .summary-total {
+    font-weight: bold;
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+    margin-top: 10px;
+  }
+  
+  .button {
+    background: black;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    margin-top: 20px;
+  }
+  
+  /* You would add media queries for responsiveness */
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+    }
+  
+    .summary-container {
+      width: 100%;
+      margin-top: 20px;
+    }
+  }

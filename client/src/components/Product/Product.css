@@ -34,13 +34,11 @@
 }
 
 .imageContainer {
-  /* Apply a maximum size to the container */
   max-height: 25vh;
   max-width: 10vw;
-  overflow: hidden; /*Hide any overflowing content*/
+  overflow: hidden; 
   position: relative;  
-
-  
+  /* border-radius: 2em;   */
 }
 
 
@@ -48,8 +46,8 @@
 .imageContainer::after {
   content: '';
   position: absolute;
-  background: transparent; /* Background is transparent by default */
-  opacity: 0; /* Elements are fully transparent by default */
+  background: transparent; 
+  opacity: 0; /* Elements are Transparency*/
   transition: opacity 0.3s ease-in-out;
 }
 
@@ -70,7 +68,7 @@
   width: 20px; /* Length of the corner line */
   height: 2px; /* Thickness of the line */
   background: white; /* Background color for the line */
-  opacity: 0; /* Fully transparent by default */
+  opacity: 0; /* Transparency*/
   transition: opacity 0.3s ease-in-out;
 }
 
@@ -82,7 +80,7 @@
   width: 2px; /* Thickness of the line */
   height: 20px; /* Length of the corner line */
   background: white; /* Background color for the line */
-  opacity: 0; /* Fully transparent by default */
+  opacity: 0; /* Transparency*/
   transition: opacity 0.3s ease-in-out;
 }
 
@@ -94,7 +92,7 @@
   width: 20px; /* Length of the corner line */
   height: 2px; /* Thickness of the line */
   background: white; /* Background color for the line */
-  opacity: 0; /* Fully transparent by default */
+  opacity: 0; /* Transparency*/
   transition: opacity 0.3s ease-in-out;
 }
 
@@ -106,7 +104,7 @@
   width: 2px; /* Thickness of the line */
   height: 20px; /* Length of the corner line */
   background: white; /* Background color for the line */
-  opacity: 0; /* Fully transparent by default */
+  opacity: 0; /* Transparency*/
   transition: opacity 0.3s ease-in-out;
 }
 
@@ -132,7 +130,7 @@
   width: 20px; /* Length of the corner line */
   height: 2px; /* Thickness of the line */
   background: white; /* Background color for the line */
-  opacity: 0; /* Fully transparent by default */
+  opacity: 0; /* Transparency*/
   transition: opacity 0.3s ease-in-out;
 }
 
@@ -144,7 +142,7 @@
   width: 2px; /* Thickness of the line */
   height: 20px; /* Length of the corner line */
   background: white; /* Background color for the line */
-  opacity: 0; /* Fully transparent by default */
+  opacity: 0; /* Transparency*/
   transition: opacity 0.3s ease-in-out;
 }
 
@@ -156,8 +154,9 @@
   width: 20px; /* Length of the corner line */
   height: 2px; /* Thickness of the line */
   background: white; /* Background color for the line */
-  opacity: 0; /* Fully transparent by default */
+  opacity: 0; /* Transparency*/
   transition: opacity 0.3s ease-in-out;
+
 }
 
 /* Top left corner vertical line */
@@ -168,7 +167,7 @@
   width: 2px; /* Thickness of the line */
   height: 20px; /* Length of the corner line */
   background: white; /* Background color for the line */
-  opacity: 0; /* Fully transparent by default */
+  opacity: 0; /* Transparency*/
   transition: opacity 0.3s ease-in-out;
 }
 

@@ -10,6 +10,7 @@ import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import LoginModal from './components/LoginModal/LoginModal';
 import Shop from './components/Shop/Shop.js';
 import { CartProvider } from './contexts/CartContext/CartContext.js';
+import { Checkout } from './pages/Order/Checkout.js';
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
               </PrivateRoute> 
             } />
           </Route>
+          <Route path='/checkout' element={<Checkout />} /> 
         </Routes>
       </HashRouter>
       </CartProvider>

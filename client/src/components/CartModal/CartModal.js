@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './CartModal.css';
 import { useCart } from '../../contexts/CartContext/CartContext.js';
+import { useNavigate } from 'react-router-dom';
 
 const dummyProducts = [
   { id: 1, name: "Product 1", price: 10.99, quantity: 2, image_url: "path/to/image1.jpg" },
@@ -15,6 +16,12 @@ const CartModal = ({ setShowCart }) => {
     // const [cartItems, setCartItems] = useState(dummyProducts); // Using dummy products
     const { cart } = useCart();
     const { dispatch } = useCart();
+    const navigate = useNavigate();
+
+    const handleCheckout = () => {
+        navigate('/checkout'); // Navigate to the checkout page
+      };
+    
 
     const onClose = () => {
         setClosing(true);
@@ -72,7 +79,7 @@ const CartModal = ({ setShowCart }) => {
                 ))}
                 </div>
                 <div className="cart-total">Total: ${calculateTotal().toFixed(2)}</div>
-                <button className='button-87'>Finish Order</button>
+                <button className='button-87' onClick={handleCheckout}>Checkout</button>
             </div>
         </div>
     );
