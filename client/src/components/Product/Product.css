@@ -38,7 +38,8 @@
   max-width: 10vw;
   overflow: hidden; 
   position: relative;  
-  /* border-radius: 2em;   */
+
+  
 }
 
 
@@ -177,6 +178,7 @@
 .imageContainer:hover .top-left,
 .imageContainer:hover .top-left-vertical {
   opacity: 1; /* Make the lines visible on hover */
+  
 }
 
 .productImage {
@@ -234,12 +236,12 @@
   }
 
   .imageContainer {
-      max-height: 80vh;
-      max-width: 80vw;
+      max-height: 40vh;
+      max-width: 40vw;
   }
 
   .productImage {
-      width: 60%;
+      /* width: 60%; */
   }
  /* BUTTONS DIMENSIONS RESIZE */
   /* .button-87 {
@@ -250,12 +252,12 @@
 
 @media (min-width: 769px) and (max-width: 1024px) { 
   .imageContainer {
-      max-height: 80vh;
+      max-height: 40vh;
       max-width: 40vw;
   }
 
   .productImage {
-      width: 70%;
+      /* width: 70%; */
   }
 
   /* .button-87 {

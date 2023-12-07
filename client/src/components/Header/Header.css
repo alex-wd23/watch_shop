@@ -42,6 +42,11 @@
     color: #fff;
     
   }
+
+  .hover.active::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
   
   /* LOGO */
   .logo {

@@ -1,6 +1,6 @@
 import {React, useState } from 'react';
 import './Header.css';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import LoginModal from '../LoginModal/LoginModal';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -59,10 +59,10 @@ const Header = () => {
           <input type="checkbox" id="checkbox_toggle" />
           <label htmlFor="checkbox_toggle" className="hamburger">&#9776;</label>
           <div className="menu">
-            <li><Link className='hover' to="/">Home</Link></li>
-            <li><Link className='hover' to="/shop" onClick={handleAccountShopClick}>Shop</Link></li>
-            <li><Link className='hover' to="/about">About</Link></li>
-            <li><Link className='hover' to="/contact">Contact</Link></li>
+            <li><NavLink className='hover' to="/">Home</NavLink ></li>
+            <li><NavLink  className='hover' to="/shop" onClick={handleAccountShopClick}>Shop</NavLink ></li>
+            <li><NavLink  className='hover' to="/about">About</NavLink ></li>
+            <li><NavLink  className='hover' to="/contact">Contact</NavLink ></li>
           </div>
         </ul>
         <div className='buttons'>
