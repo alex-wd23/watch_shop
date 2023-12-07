@@ -29,6 +29,8 @@
     flex-direction: column; /* Stack children vertically */
     /* align-items: center; Center items horizontally */
     /* justify-content: center; Center items vertically */
+    overflow-y: auto; /* Add vertical scroll */
+    overflow-x: hidden; /* Hide horizontal scroll */
 }
 
 .close-modal {
