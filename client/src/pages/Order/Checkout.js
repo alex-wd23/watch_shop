@@ -1,11 +1,20 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import './Checkout.css';
 import { useCart } from '../../contexts/CartContext/CartContext.js';
 
 export const Checkout = () => {
-
   const { cart } = useCart();
+  const [formData, setFormData] = useState({
+    email: '',
+    firstName: '',
+    lastName: '',
+    // Add other fields as necessary
+  });
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
   const calculateTotal = () => cart.items.reduce((total, item) => total + (item.price * item.quantity), 0);
 
@@ -16,28 +25,46 @@ export const Checkout = () => {
         <div className="form-section">
           <div className="section-header">Contact</div>
           <div className="input-group">
-            <label htmlFor="email">Email</label>
-            <input type="email" id="email" placeholder="Enter your email" />
+            <input 
+              type="email" 
+              id="email" 
+              name="email" 
+              value={formData.email}
+              onChange={handleInputChange}
+              className={formData.email ? 'filled' : ''}
+            />
+            <label htmlFor="email" className={formData.email ? 'filled' : ''}>Email</label>
           </div>
-          {/* Additional form fields */}
-        </div>
-
-        {/* Shipping Address Section */}
-        <div className="form-section">
-          <div className="section-header">Shipping address</div>
-          {/* Row for first name and last name */}
+          {/* Shipping Address Section */}
+          {/* ... */}
+          <div className="section-header">Shipping adress</div>
           <div className="input-row">
+            {/* First Name */}
             <div className="input-group">
-              <label htmlFor="first-name">First name</label>
-              <input type="text" id="first-name" placeholder="First name" />
+              <input 
+                type="text" 
+                id="first-name" 
+                name="firstName" 
+                value={formData.firstName}
+                onChange={handleInputChange}
+                className={formData.firstName ? 'filled' : ''}
+              />
+              <label htmlFor="first-name" className={formData.firstName ? 'filled' : ''}>First name</label>
             </div>
+            {/* Last Name */}
             <div className="input-group">
-              <label htmlFor="last-name">Last name</label>
-              <input type="text" id="last-name" placeholder="Last name" />
+              <input 
+                type="text" 
+                id="last-name" 
+                name="lastName" 
+                value={formData.lastName}
+                onChange={handleInputChange}
+                className={formData.lastName ? 'filled' : ''}
+              />
+              <label htmlFor="last-name" className={formData.lastName ? 'filled' : ''}>Last name</label>
             </div>
           </div>
-          {/* Additional form fields */}
-          <button className="button">Continue to shipping</button>
+          {/* ... Additional form fields ... */}
         </div>
       </div>
 

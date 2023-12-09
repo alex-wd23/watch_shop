@@ -42,52 +42,38 @@
   }
   
   .input-group input[type="text"],
-  .input-group input[type="email"],
-  .input-group select {
+  .input-group input[type="email"] {
     padding: 10px;
     border: 1px solid #ccc;
     width: 100%;
     box-sizing: border-box;
-    transition: border-color 0.2s;
   }
   
   .input-group label {
     position: absolute;
-    top: 0;
+    top: 30px;
     left: 10px;
     transition: top 0.2s, font-size 0.2s;
     color: #888;
-    pointer-events: none;
-    margin-top: 10px; /* Align label with text */
-    background-color: white; /* Match the input's background */
-    padding: 0 4px; /* Prevent background overlap with border */
+    pointer-events: none; /* Let clicks through to the input */
   }
   
-  /* When the input is not empty */
-  .input-group input:not(:placeholder-shown) + label,
-  .input-group input:focus + label {
-    top: -20px;
+  .input-group input:focus + label,
+  .input-group input.filled + label {
+    top: -10px;
     font-size: 12px;
     color: #333;
   }
   
-  .input-group input:focus {
+  .input-group input:focus,
+  .input-group input.filled {
     outline: none;
     border-color: #555;
   }
+
+
+
   
-  /* Style for input if placeholder is not shown - makes room for the label */
-  .input-group input:not(:placeholder-shown),
-  .input-group input:focus {
-    padding-top: 20px; /* Increase padding-top to make space for the label */
-  }
-  
-  /* Adjust the label's position if the input is autofilled */
-  .input-group input:-webkit-autofill + label {
-    top: -20px;
-    font-size: 12px;
-    color: #333;
-  }
   
   /* Right column styles */
   .summary-container {
