@@ -8,6 +8,9 @@ export const Checkout = () => {
     email: '',
     firstName: '',
     lastName: '',
+    adress:'',
+    apartment:'',
+    phone:'',
     // Add other fields as necessary
   });
 
@@ -65,6 +68,40 @@ export const Checkout = () => {
             </div>
           </div>
           {/* ... Additional form fields ... */}
+          <div className="input-group">
+              <input 
+                type="adress" 
+                id="adress" 
+                name="adress" 
+                value={formData.adress}
+                onChange={handleInputChange}
+                className={formData.adress ? 'filled' : ''}
+              />
+            <label htmlFor="adress" className={formData.adress ? 'filled' : ''}>Adress</label>
+          </div>
+          <div className="input-group">
+              <input 
+                type="apartment" 
+                id="apartment" 
+                name="apartment" 
+                value={formData.apartment}
+                onChange={handleInputChange}
+                className={formData.apartment ? 'filled' : ''}
+              />
+            <label htmlFor="apartment" className={formData.apartment ? 'filled' : ''}>Apartment, suite, etc. (optional)</label>
+          </div>
+          <div className="input-group">
+              <input 
+                type="phone" 
+                id="phone" 
+                name="phone" 
+                value={formData.phone}
+                onChange={handleInputChange}
+                className={formData.phone ? 'filled' : ''}
+              />
+            <label htmlFor="phone" className={formData.phone ? 'filled' : ''}>Phone</label>
+          </div>
+          <button className='shipping-button'>Continue to shipping</button>
         </div>
       </div>
 
@@ -78,12 +115,14 @@ export const Checkout = () => {
                 <div className="cart-item-name">{item.name}</div>
                 <div className="cart-item-description">{item.description}</div>
                 <div className="cart-item-price">${(item.price * item.quantity).toFixed(2)}</div>
-                <div className="quantity-display">{item.quantity}</div>
+                {/* <div className="quantity-display">{item.quantity}</div> */}
               </div>
             </div>
           ))}
           <div className="summary-total">
-            <span>Total</span>
+            <span>Shipping: $10</span>
+            <br></br>
+            <span>Total: </span>
             <span>${calculateTotal().toFixed(2)}</span>
           </div>
         </div>

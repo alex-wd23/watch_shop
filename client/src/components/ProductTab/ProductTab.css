@@ -33,7 +33,7 @@
 }
 
 
-.productTabContainer p {
+.productTabContainer, .buttons p {
 
     position: relative;
     align-items: center;
