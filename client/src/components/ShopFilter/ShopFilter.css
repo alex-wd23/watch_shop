@@ -8,7 +8,7 @@
     left: 0; /* Adjust if your sidebar is not the first element from the left */
     height: 100%;
     overflow-y: auto; /* Allows the filter to be scrollable independently */
-    z-index: 0; /* Ensures the sidebar stays above other content */
+    z-index: 1; /* Ensures the sidebar stays above other content */
     /* font-size: 1rem; */
     
   }

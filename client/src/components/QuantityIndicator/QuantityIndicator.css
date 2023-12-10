@@ -1,0 +1,14 @@
+.quantity-indicator-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .quantity-indicator {
+    position: absolute;
+    bottom: 17px;
+    /* right: 0; */
+    /* background-color: rgb(19, 19, 19); */
+    color: white;
+    border-radius: 50%;
+    font-size: 0.8em;
+  }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Checkout.css';
 import { useCart } from '../../contexts/CartContext/CartContext.js';
+import QuantityIndicator from '../../components/QuantityIndicator/QuantityIndicator.js';
 
 export const Checkout = () => {
   const { cart } = useCart();
@@ -104,20 +105,22 @@ export const Checkout = () => {
           <button className='shipping-button'>Continue to shipping</button>
         </div>
       </div>
-
+      <div className="divider"></div> 
       <div className="summary-container">
         <div className="summary-box">
           {/* Map through cart items */}
           {cart.items.map(item => (
             <div className="cart-item" key={item.id}>
+              <QuantityIndicator>
               <img src={item.image_url} alt={item.name} className="cart-item-image" />
+              </QuantityIndicator>
               <div className="cart-item-details">
                 <div className="cart-item-name">{item.name}</div>
                 <div className="cart-item-description">{item.description}</div>
                 <div className="cart-item-price">${(item.price * item.quantity).toFixed(2)}</div>
                 {/* <div className="quantity-display">{item.quantity}</div> */}
               </div>
-            </div>
+            </div> 
           ))}
           <div className="summary-total">
             <span>Shipping: $10</span>

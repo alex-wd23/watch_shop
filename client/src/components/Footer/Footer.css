@@ -63,12 +63,14 @@
     margin-bottom: 2rem;
   }
   
-  footer hr {
-    margin: 2rem 0;
-    
+  footer, .footer-hr {
+    margin-left: 1em;
+    margin-right: 1em;
+    border: none;
+    background-color: rgb(117, 114, 114);
+    height: 1px; 
   }
-  
- 
+
 
   @media (max-width: 767px) {
     .footer .content {

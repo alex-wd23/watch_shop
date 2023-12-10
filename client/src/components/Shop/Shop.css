@@ -71,5 +71,9 @@
   }
 
   .hr-shop {
-    color:wheat;
+    border: none;
+    background-color: rgb(117, 114, 114);
+    width:98vw;
+    height: 1px;
+    
   }

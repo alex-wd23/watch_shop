@@ -1,6 +1,6 @@
 .productModal {
     position: fixed;
-    z-index: 1000; /* Ensure it's above other content */
+    z-index: 1; /* Ensure it's above other content */
     left: 0;
     top: 0;
     width: 100vw; /* Full viewport width */
@@ -14,7 +14,7 @@
 }
 
 .productModalContent {
-    z-index: 1001; /* Ensure it's above the overlay */
+    z-index: 1; /* Ensure it's above the overlay */
     gap: 1vh;
     /* background-color: #a8a2a2; */
     background-image: linear-gradient(180deg, #918888 0%, #ffffff 100%);

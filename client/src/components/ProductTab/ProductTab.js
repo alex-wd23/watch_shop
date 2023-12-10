@@ -76,9 +76,9 @@ export const ProductTab = ({ parentWidth }) => {
       </div>
       <div className='buttons'>
         {/* Buttons to switch between product categories */}
-        <p className={`${activeButton === 'classic' ? 'onClickUnderline' : ''}`} onClick={() => handleClick('classic')}> CLASSIC </p>
-        <p className={`${activeButton === 'modern' ? 'onClickUnderline' : ''}`} onClick={() => handleClick('modern')}> MODERN </p>
-        <p className={`${activeButton === 'special' ? 'onClickUnderline' : ''}`} onClick={() => handleClick('special')}> SPECIAL EDITION </p>
+        <p className={`productTab-paragraph ${activeButton === 'classic' ? 'onClickUnderline' : ''}`} onClick={() => handleClick('classic')}> CLASSIC </p>
+        <p className={`productTab-paragraph ${activeButton === 'modern' ? 'onClickUnderline' : ''}`} onClick={() => handleClick('modern')}> MODERN </p>
+        <p className={`productTab-paragraph ${activeButton === 'special' ? 'onClickUnderline' : ''}`} onClick={() => handleClick('special')}> SPECIAL EDITION </p>
       </div>
       {/* Product slider */}
       <div className='productSlider'>

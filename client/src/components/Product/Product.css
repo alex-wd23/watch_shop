@@ -38,6 +38,7 @@
   max-width: 10vw;
   overflow: hidden; 
   position: relative;  
+  /* border-radius: 2em; */
 
   
 }
@@ -213,6 +214,7 @@
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  font-size: 1em;
 }
 
 .button-87:hover {

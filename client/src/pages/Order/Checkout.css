@@ -50,7 +50,7 @@
       border: 1px solid #ccc;
       width: 100%;
       box-sizing: border-box;
-      border-radius: 5px; /* This should round all corners */
+      border-radius: 10px; /* This should round all corners */
   }
   
   .input-group label {
@@ -124,6 +124,47 @@
     flex-direction: row;
     gap: 1vw;
     padding-left: 1vw;
+  }
+
+
+
+  .no-underline {
+    text-decoration: none; /* Remove underline */
+  }
+
+  .divider {
+    /* border: none; */
+    width: 1px; 
+    background-color: rgb(221, 218, 218);
+    
+  }
+
+  .summary-box .cart-item {
+    position: relative; /* This ensures that the remove button can be positioned relative to the cart item */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px;
+    border-bottom: none;
+  }
+
+  .cart-item .quantity-indicator {
+    position: absolute;
+    bottom: 75px; /* Adjust if necessary */
+    background-color: rgb(179, 170, 170);
+    color: rgb(0, 0, 0);
+    border-radius: 50%; /* Keep it 50% for perfect circle */
+    padding: 10px; /* Increase padding to make the circle bigger */
+    font-size: 1.2em; /* Adjust font size as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px; /* Set a specific width */
+    height: 30px; /* Set a specific height */
+    text-align: center;
+    margin-left: 90px;
   }
 
   /* You would add media queries for responsiveness */

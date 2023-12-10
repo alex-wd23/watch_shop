@@ -34,6 +34,7 @@
     /* -webkit-box-shadow: #333 1px 3px 4px;
     -moz-box-shadow: #333 1px 3px 4px;
     box-shadow: #333 1px 3px 4px; */
+    position: relative;
     z-index:2;
 
   }
@@ -62,13 +63,15 @@
 
   .nav li {
     display: inline-block;
-    padding: 0px 20px
+    padding: 0px 20px;
+    
   }
 
   .menu {
     display: flex;
     gap: 1em;
     font-size: 20px; 
+   
   }
 
   .hover {
@@ -109,12 +112,13 @@
 
   .menu li {
     
-    padding: 5px 14px;
-    
+    padding: 5px 14px; 
+   
   }
   
   input[type=checkbox] {
     display: none;
+   
   } 
   
   /* HAMBURGER MENU */
@@ -180,9 +184,9 @@
     .hamburger {   
       /* display: flex;
       flex-direction: column; */
-      margin-top: 0.8em;
+      margin-top: 0.1em;
       /* margin-right: 0.8em; */
-      margin-left: 0.9em;
+      margin-left: 2em;
       display: block;
     } 
 

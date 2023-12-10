@@ -33,7 +33,7 @@
 }
 
 
-.productTabContainer, .buttons p {
+.productTabContainer .productTab-paragraph {
 
     position: relative;
     align-items: center;
@@ -120,7 +120,7 @@
         font-size: 8vw;
     }
 
-    .productTabContainer p {
+    .productTabContainer .productTab-paragraph {
         font-size: 4vw;
     }
     
@@ -141,7 +141,7 @@
         font-size: 6vw;
     }
 
-    .productTabContainer p {
+    .productTabContainer .productTab-paragraph {
         font-size: 2.5vw;
     }
 
@@ -161,7 +161,7 @@
         font-size: 4vw;
     }
 
-    .productTabContainer p {
+    .productTabContainer .productTab-paragraph {
         font-size: 1.5vw;
     }
 

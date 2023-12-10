@@ -4,7 +4,7 @@ import './Footer.css';
 const Footer = () => {
   return (
     <div className="footer">
-      <hr />
+      <hr className='footer-hr'/>
       <div className="heading">
         {/* <h2>Watch Shop<sup>™</sup></h2> */}
       </div>
@@ -44,7 +44,7 @@ const Footer = () => {
         </div>
       </div>
       <footer>
-        <hr />
+        <hr className='footer-hr' />
         © 2022 Watch Shop.
       </footer>
     </div>

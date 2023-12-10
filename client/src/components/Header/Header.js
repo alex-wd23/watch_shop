@@ -5,6 +5,7 @@ import LoginModal from '../LoginModal/LoginModal';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import CartModal from '../CartModal/CartModal';
+import QuantityIndicator from '../QuantityIndicator/QuantityIndicator';
 
 
 const Header = () => {
@@ -12,6 +13,18 @@ const Header = () => {
   const [showModal, setShowModal] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showCart, setShowCart] = useState(false);
+  const [isNavExpanded, setIsNavExpanded] = useState(false);
+
+   // Function to toggle the navbar expansion
+   const toggleNav = () => {
+    setIsNavExpanded(!isNavExpanded);
+  };
+
+  // Function to close the navbar when a link is clicked
+  const closeNav = () => {
+    setIsNavExpanded(false);
+  };
+
 
   const checkAuthStatus = async () => {
   
@@ -56,18 +69,21 @@ const Header = () => {
           <Link to="/"><img className='logo' src="/watch_shop/logo.png" alt="logo" /></Link>
         </div>
         <ul className="nav-links">
-          <input type="checkbox" id="checkbox_toggle" />
-          <label htmlFor="checkbox_toggle" className="hamburger">&#9776;</label>
+          <input type="checkbox" id="checkbox_toggle" checked={isNavExpanded}  onChange={toggleNav} />
+          <label htmlFor="checkbox_toggle"  className="hamburger">&#9776;</label>
+          
           <div className="menu">
-            <li><NavLink className='hover' to="/">Home</NavLink ></li>
-            <li><NavLink  className='hover' to="/shop" onClick={handleAccountShopClick}>Shop</NavLink ></li>
-            <li><NavLink  className='hover' to="/about">About</NavLink ></li>
-            <li><NavLink  className='hover' to="/contact">Contact</NavLink ></li>
+            <li><NavLink className='hover' to="/" onClick={closeNav}>Home</NavLink ></li>
+            <li><NavLink className='hover' to="/shop" onClick={closeNav}>Shop</NavLink ></li>
+            <li><NavLink className='hover' to="/about" onClick={closeNav}>About</NavLink ></li>
+            <li><NavLink className='hover' to="/contact" onClick={closeNav}>Contact</NavLink ></li>
           </div>
         </ul>
         <div className='buttons'>
           <Link to="/"><img className='searchLink' src="/watch_shop/search_icon.ico" alt="seracIcon" /></Link>
+          <QuantityIndicator>
           <Link to="#"><img className='cartIcon' src="/watch_shop/cart_icon.png" alt="seracIcon" onClick={showCartModal} /></Link>
+          </QuantityIndicator>
           <div>
           <img className='accountIcon' src="/watch_shop/account_icon.png" alt="accountIcon" onClick={handleAccountIconClick} />
           </div>
