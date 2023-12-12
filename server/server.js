@@ -329,6 +329,7 @@ app.get("/filter", async (req, res) => {
 app.post('/checkout', async (req, res) => {
     const { email, firstName, lastName, address, apartment, phone, items } = req.body;
     const emailRegex = /^\S+@\S+\.\S+$/;
+    const phoneNumberRegex = /^\+?\d{10,15}$/; // Regex for phone number validation
     let errors = {};
     if (!email || !emailRegex.test(email.trim())) {
         errors.email = 'Please provide a valid email.';
@@ -337,6 +338,9 @@ app.post('/checkout', async (req, res) => {
     if (!lastName || lastName.trim() === '') errors.lastName = 'Please provide a last name.';
     if (!address || address.trim() === '') errors.address = 'Please provide an address.';
     if (!phone || phone.trim() === '') errors.phone = 'Please provide a phone number.';
+    if (!phoneNumberRegex.test(req.body.phone.trim())) {
+        errors.phone = 'Please provide a valid phone number.';
+    }
 
     // Check if there are any errors
     if (Object.keys(errors).length !== 0) {

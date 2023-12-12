@@ -23,23 +23,75 @@ export const Checkout = () => {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
+    // Revalidate the form to update error messages
+    validateFormOnChange(name, value);
   };
 
   const validateForm = () => {
     let errors = {};
-    if (!formData.email.trim()) errors.email = "Please provide an email.";
+    const phoneNumberRegex = /^\+?\d{10,15}$/; // Regex for phone number validation
+    const emailRegex = /^\S+@\S+\.\S+$/;
+    const containsNumbers = /\d/; // Regular expression to check for digits
+
+    if (!formData.email || !emailRegex.test(formData.email.trim())) {
+      errors.email = 'Please provide a valid email.';
+    }
     if (!formData.firstName.trim()) errors.firstName = "Please provide a first name.";
     if (!formData.lastName.trim()) errors.lastName = "Please provide a last name.";
     if (!formData.address.trim()) errors.address = "Please provide an address.";
-    if (!formData.phone.trim()) errors.phone = "Please provide a phone number.";
-
+    // Check for empty phone field
+    if (!formData.phone.trim()) {
+        errors.phone = "Please provide a phone number.";
+    } else if (!phoneNumberRegex.test(formData.phone.trim())) { // Check for valid phone format
+        errors.phone = "Please provide a valid phone number.";
+    }
+    
+    if (containsNumbers.test(formData.firstName)) {
+        errors.firstName = 'The name cannot include numbers.';
+    }
+    
+    if (containsNumbers.test(formData.lastName)) {
+        errors.lastName = 'The name cannot include numbers.';
+    }
     setFormErrors(errors);
+    console.log(formData.phone)
+  
 
     return Object.keys(errors).length === 0; // Return true if no errors
   };
 
+  const validateFormOnChange = (fieldName, value) => {
+    let errors = { ...formErrors };
+    const phoneNumberRegex = /^\+?\d{10,15}$/; // Regex for phone number validation
+    const emailRegex = /^\S+@\S+\.\S+$/;
+    const containsNumbers = /\d/; // Regular expression to check for digits
+  
+    switch(fieldName) {
+      case 'email':
+        errors.email = (!value || !emailRegex.test(value.trim())) ? 'Please provide a valid email.' : '';
+        break;
+      case 'firstName':
+        errors.firstName = (!value.trim()) ? 'Please provide a first name.' : (containsNumbers.test(value) ? 'The name cannot include numbers.' : '');
+        break;
+      case 'lastName':
+        errors.lastName = (!value.trim()) ? 'Please provide a last name.' : (containsNumbers.test(value) ? 'The name cannot include numbers.' : '');
+        break;
+      case 'address':
+        errors.address = (!value.trim()) ? 'Please provide an address.' : '';
+        break;
+      case 'phone':
+        errors.phone = (!value.trim()) ? 'Please provide a phone number.' : (!phoneNumberRegex.test(value.trim()) ? 'Please provide a valid phone number.' : '');
+        break;
+      // Add other fields as necessary
+      default:
+        break;
+    }
+  
+    setFormErrors(errors);
+  };
+
   const handleCheckout = async () => {
-    // if (!validateForm()) return;
+    if (!validateForm()) return;
     const orderData = {
         email: formData.email,
         firstName: formData.firstName,
@@ -111,6 +163,7 @@ export const Checkout = () => {
                 className={formData.firstName ? 'filled' : ''}
               />
               <label htmlFor="first-name" className={formData.firstName ? 'filled' : ''}>First name</label>
+              {formErrors.firstName && <span className="error-message">{formErrors.firstName}</span>}
             </div>
             {/* Last Name */}
             <div className="input-group">
@@ -123,6 +176,8 @@ export const Checkout = () => {
                 className={formData.lastName ? 'filled' : ''}
               />
               <label htmlFor="last-name" className={formData.lastName ? 'filled' : ''}>Last name</label>
+              {formErrors.lastName && <span className="error-message">{formErrors.lastName}</span>}
+
             </div>
           </div>
           {/* ... Additional form fields ... */}
@@ -136,6 +191,7 @@ export const Checkout = () => {
                 className={formData.address ? 'filled' : ''}
               />
             <label htmlFor="address" className={formData.address ? 'filled' : ''}>Address</label>
+            {formErrors.address && <span className="error-message">{formErrors.address}</span>}
           </div>
           <div className="input-group">
               <input 
@@ -158,6 +214,7 @@ export const Checkout = () => {
                 className={formData.phone ? 'filled' : ''}
               />
             <label htmlFor="phone" className={formData.phone ? 'filled' : ''}>Phone</label>
+            {formErrors.phone && <span className="error-message">{formErrors.phone}</span>}
           </div>
           <button  onClick={handleCheckout} className='shipping-button'>Finish order</button>
         </div>

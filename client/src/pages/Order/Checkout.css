@@ -20,6 +20,7 @@
   .error-message {
     color: red;
     font-size: 0.8em;
+    animation: fadeIn 0.5s ease-out; /* Apply the fadeIn animation over 0.5 seconds */
   }
 
   /* Left column styles */
@@ -98,14 +99,12 @@
   
   /* Right column styles */
   .summary-container {
-    
     flex: 1;
     background-color: rgb(250,250,250);
     width: auto;
     height: auto;
     padding-top:5vw ;
     padding-right: 10vw;
-  
   }
   
   .summary-box {
@@ -159,7 +158,6 @@
     /* border: none; */
     width: 1px; 
     background-color: rgb(221, 218, 218);
-    
   }
 
   .summary-box .cart-item {
@@ -173,7 +171,7 @@
     border-bottom: none;
   }
 
-  .cart-item .quantity-indicator {
+.cart-item .quantity-indicator {
     position: absolute;
     bottom: 75px; /* Adjust if necessary */
     background-color: rgb(179, 170, 170);
@@ -188,7 +186,12 @@
     height: 30px; /* Set a specific height */
     text-align: center;
     margin-left: 90px;
-  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 
 /* Responsive Design */
 /* Large Screens */
