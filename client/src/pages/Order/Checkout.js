@@ -111,7 +111,7 @@ export const Checkout = () => {
           {/* Map through cart items */}
           {cart.items.map(item => (
             <div className="cart-item" key={item.id}>
-              <QuantityIndicator>
+              <QuantityIndicator itemQuantity={item.quantity}>
               <img src={item.image_url} alt={item.name} className="cart-item-image" />
               </QuantityIndicator>
               <div className="cart-item-details">

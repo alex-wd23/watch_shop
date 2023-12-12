@@ -56,28 +56,40 @@
 }
 
 .cart-item {
-    position: relative; /* This ensures that the remove button can be positioned relative to the cart item */
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
     padding: 10px;
-    border-bottom: 1px solid #ccc;
-    
-}
-
-
+    width: 100%;
+  }
+  
 .cart-item-details {
     display: flex;
     flex-direction: column; /* Stack item details vertically */
-    align-items: center; /* Center align the details */
-    flex-grow: 1;
-    border-radius: 1em;
+    flex-grow: 1; /* Allows the item details to grow */
+    margin-right: 10px; /* Space between details and price */
 }
 
-.cart-item-name, .cart-item-price, .cart-item-quantity, .cart-item-subtotal {
-    margin-bottom: 5px; /* Add some spacing between details */
+.cart-item-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+    /* Ensure name takes only the space it needs */
+    flex-shrink: 1;
+    min-width: 0;
+}
+
+.cart-item-description {
+    margin-bottom: 5px;
+    /* Ensure description does not push price out of alignment */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.cart-item-price {
+    font-weight: bold;
+    margin-left: auto; /* Pushes the price to the right */
+    white-space: nowrap; /* Prevents the price from wrapping */
 }
 
 .cart-total {
@@ -109,6 +121,7 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
+  
 }
 
 .quantity-button {
@@ -137,6 +150,7 @@
     align-items: center; /* Center vertically */
     justify-content: center; /* Center horizontally */
   }
+
 /* Simple scaling animation */
 @keyframes slideInRight {
     from {
@@ -159,3 +173,4 @@
         opacity: 0;
     }
 }
+

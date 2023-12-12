@@ -33,16 +33,21 @@
   
   .input-row {
     display: flex;
-    gap: 10px; /* This creates space between your inputs */
-}
+    gap: 10px; /* Creates space between your inputs */
+  }
   
-.input-group {
+  .input-group {
+    flex: 1; /* Makes each input group take equal space */
     position: relative;
     margin-bottom: 15px;
+    font-size: 0.8em;
   }
+  
   
   .input-group input[type="text"],
   .input-group input[type="email"],
+  .input-group input[type="firstName"],
+  .input-group input[type="lastName"],
   .input-group input[type="adress"],
   .input-group input[type="apartment"],
   .input-group input[type="phone"] {
@@ -50,7 +55,7 @@
       border: 1px solid #ccc;
       width: 100%;
       box-sizing: border-box;
-      border-radius: 10px; /* This should round all corners */
+      border-radius: 10px;
   }
   
   .input-group label {
@@ -117,6 +122,9 @@
     cursor: pointer;
     display: inline-block;
     margin-top: 20px;
+    max-width: 200px;
+    height: 70px;
+    border-radius: 2em;
   }
   
   .summary-container, .cart-item-details {
@@ -167,14 +175,68 @@
     margin-left: 90px;
   }
 
-  /* You would add media queries for responsiveness */
-  @media (max-width: 768px) {
-    .container {
-      flex-direction: column;
-    }
-  
-    .summary-container {
-      width: 100%;
-      /* margin-top: 20px; */
-    }
+/* Responsive Design */
+/* Large Screens */
+@media (min-width: 1024px) {
+  .input-group input:focus + label,
+  .input-group input.filled + label {
+    top: 1px; /* Adjust position when focused or filled */
   }
+}
+
+/* Medium Screens */
+@media (max-width: 1023px) and (min-width: 768px) {
+  /* Styles for medium screens like tablets */
+  .form-container, .summary-container {
+    padding: 15px; /* Adjust padding for medium screens */
+  }
+
+  .input-group input:focus + label,
+  .input-group input.filled + label {
+    top: 1px; /* Adjust position when focused or filled */
+  }
+}
+
+/* Small Screens */
+@media (max-width: 767px) {
+  .checkout-container {
+    flex-direction: column-reverse; /* Stack containers for small screens */
+  }
+
+  .form-container, .summary-container {
+    width: 100%; /* Full width for small screens */
+    padding: 10px; /* Reduced padding */
+  }
+
+  .input-group {
+    /* Adjust input group styles for small screens */
+  }
+
+  .input-group input[type="text"],
+  .input-group input[type="email"],
+  .input-group input[type="adress"],
+  .input-group input[type="apartment"],
+  .input-group input[type="phone"] {
+    padding: 12px; /* Adjust padding */
+    font-size: 14px; /* Adjust font size */
+  }
+
+  .input-group label {
+    top: 30px; /* Adjust label position */
+    font-size: 13px; /* Adjust label font size */
+  }
+
+  .input-group input:focus + label,
+  .input-group input.filled + label {
+    top: 1px; /* Adjust position when focused or filled */
+  }
+
+  .shipping-button, .cart-item .quantity-indicator {
+    /* Adjust button and quantity indicator sizes */
+  }
+
+  /* Adjustments for cart item details */
+  .cart-item-details {
+    flex-direction: row; /* Stack details vertically */
+  }
+}
