@@ -2,28 +2,84 @@ import React, { useState } from 'react';
 import './Checkout.css';
 import { useCart } from '../../contexts/CartContext/CartContext.js';
 import QuantityIndicator from '../../components/QuantityIndicator/QuantityIndicator.js';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export const Checkout = () => {
-  const { cart } = useCart();
+  const navigate = useNavigate();
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [formErrors, setFormErrors] = useState({});
   const [formData, setFormData] = useState({
     email: '',
     firstName: '',
     lastName: '',
-    adress:'',
+    address:'',
     apartment:'',
     phone:'',
     // Add other fields as necessary
   });
+  const { cart, dispatch } = useCart();
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  const validateForm = () => {
+    let errors = {};
+    if (!formData.email.trim()) errors.email = "Please provide an email.";
+    if (!formData.firstName.trim()) errors.firstName = "Please provide a first name.";
+    if (!formData.lastName.trim()) errors.lastName = "Please provide a last name.";
+    if (!formData.address.trim()) errors.address = "Please provide an address.";
+    if (!formData.phone.trim()) errors.phone = "Please provide a phone number.";
+
+    setFormErrors(errors);
+
+    return Object.keys(errors).length === 0; // Return true if no errors
+  };
+
+  const handleCheckout = async () => {
+    // if (!validateForm()) return;
+    const orderData = {
+        email: formData.email,
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        address: formData.address,
+        apartment: formData.apartment,
+        phone: formData.phone,
+        items: cart.items
+    };
+
+    try {
+        const response = await axios.post('http://localhost:3001/checkout', orderData);
+        console.log(response.data);
+        // Clear the cart
+        dispatch({ type: 'CLEAR_CART' });
+         // Show confirmation popup
+         setShowConfirmation(true);
+         setTimeout(() => {
+          navigate('/shop'); // Replace '/shop' with the actual path to your shop
+        }, 3000); // 3 seconds delay
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        // Log validation errors from the server
+        console.log("Validation errors:", error.response.data.errors);
+      } else {
+        // Log other types of errors
+        console.error("Checkout error:", error);
+      }
+    }
+  };
+
   const calculateTotal = () => cart.items.reduce((total, item) => total + (item.price * item.quantity), 0);
 
   return (
     <div className="checkout-container">
+      {showConfirmation && (
+                <div className="confirmation-popup">
+                    Order placed successfully!
+                </div>
+      )}
       <div className="form-container">
         {/* Contact Section */}
         <div className="form-section">
@@ -38,10 +94,11 @@ export const Checkout = () => {
               className={formData.email ? 'filled' : ''}
             />
             <label htmlFor="email" className={formData.email ? 'filled' : ''}>Email</label>
+            {formErrors.email && <span className="error-message">{formErrors.email}</span>}
           </div>
           {/* Shipping Address Section */}
           {/* ... */}
-          <div className="section-header">Shipping adress</div>
+          <div className="section-header">Shipping address</div>
           <div className="input-row">
             {/* First Name */}
             <div className="input-group">
@@ -71,14 +128,14 @@ export const Checkout = () => {
           {/* ... Additional form fields ... */}
           <div className="input-group">
               <input 
-                type="adress" 
-                id="adress" 
-                name="adress" 
-                value={formData.adress}
+                type="address" 
+                id="address" 
+                name="address" 
+                value={formData.address}
                 onChange={handleInputChange}
-                className={formData.adress ? 'filled' : ''}
+                className={formData.address ? 'filled' : ''}
               />
-            <label htmlFor="adress" className={formData.adress ? 'filled' : ''}>Adress</label>
+            <label htmlFor="address" className={formData.address ? 'filled' : ''}>Address</label>
           </div>
           <div className="input-group">
               <input 
@@ -102,7 +159,7 @@ export const Checkout = () => {
               />
             <label htmlFor="phone" className={formData.phone ? 'filled' : ''}>Phone</label>
           </div>
-          <button className='shipping-button'>Continue to shipping</button>
+          <button  onClick={handleCheckout} className='shipping-button'>Finish order</button>
         </div>
       </div>
       <div className="divider"></div> 

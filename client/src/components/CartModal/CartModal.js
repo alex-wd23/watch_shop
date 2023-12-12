@@ -54,7 +54,7 @@ const CartModal = ({ setShowCart }) => {
         dispatch({ type: 'REMOVE_ITEM', payload: itemId });
       };
 
-    // const calculateSubtotal = (item) => item.price * item.quantity;
+    const hasItemsInCart = cart.items && cart.items.length > 0;
     const calculateTotal = () => cart.items.reduce((total, item) => total + (item.price * item.quantity), 0);
 
     return (
@@ -66,14 +66,14 @@ const CartModal = ({ setShowCart }) => {
                 <div className="cart-item" key={item.id}>
                     <img src={item.image_url} alt={item.name} className="cart-item-image" />
                     <div className="cart-item-details">
-                    <div className="cart-item-name">{item.name}</div>
-                    <div className="cart-item-description">{item.description}</div> {/* Assuming description is a field in your product object */}
-                    <div className="cart-item-price">${(item.price * item.quantity).toFixed(2)}</div>
-                    <div className="quantity-control">
-                    <p className="quantity-button" onClick={() => removeFromCart(item.id)}>-</p>
-                    <div className="quantity-display">{item.quantity}</div>
-                    <p className="quantity-button" onClick={() => addToCart(item.id)}>+</p>
-                    </div>
+                        <div className="cart-item-name">{item.name}</div>
+                        <div className="cart-item-description">{item.description}</div> {/* Assuming description is a field in your product object */}
+                        <div className="cart-item-price">${(item.price * item.quantity).toFixed(2)}</div>
+                        <div className="quantity-control">
+                        <p className="quantity-button" onClick={() => removeFromCart(item.id)}>-</p>
+                        <div className="quantity-display">{item.quantity}</div>
+                        <p className="quantity-button" onClick={() => addToCart(item.id)}>+</p>
+                        </div>
                     </div>
                 </div>
                 ))}

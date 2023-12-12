@@ -11,6 +11,7 @@
     background-color: rgba(0, 0, 0, 0.5);
     display: flex; /* Add this */
     justify-content: flex-end; /* Aligns children to the right */
+    
 }
 
 .cart-modal-content {
@@ -53,6 +54,7 @@
     flex-direction: column; /* Stack items vertically */
     gap: 10px;
     width: 100%; /* Ensure full width */
+    
 }
 
 .cart-item {
@@ -84,6 +86,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    
 }
 
 .cart-item-price {
@@ -114,7 +117,7 @@
     max-height: 100px;
     object-fit: contain; /* This ensures the image maintains its aspect ratio */
     border-radius: 8px;
-  }
+}
 
 .quantity-control {
   display: flex;
@@ -174,3 +177,24 @@
     }
 }
 
+
+@media (max-width: 769px) {
+  
+
+    .cart-modal-container .cart-item-image {
+        align-self: center; /* Center the image within the column */
+        margin-bottom: 30px; /* Add some space below the image */
+        margin-right: 10px
+    }
+
+    .cart-modal-container .cart-item-details {
+        display: flex;
+        flex-direction: column;
+       
+    }
+
+    .cart-item-name, .cart-item-description, .cart-item-price, .quantity-control {
+        width: 100%; /* Ensure each element takes the full width */
+        margin-bottom: 5px; /* Add some space between elements */
+    }
+}

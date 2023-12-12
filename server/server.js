@@ -321,6 +321,53 @@ app.get("/filter", async (req, res) => {
     }
 });
 
+
+//////////////////////////////////////////////
+// Checkout Section
+/////////////////////////////////////////////
+
+app.post('/checkout', async (req, res) => {
+    const { email, firstName, lastName, address, apartment, phone, items } = req.body;
+    const emailRegex = /^\S+@\S+\.\S+$/;
+    let errors = {};
+    if (!email || !emailRegex.test(email.trim())) {
+        errors.email = 'Please provide a valid email.';
+    }
+    if (!firstName || firstName.trim() === '') errors.firstName = 'Please provide a first name.';
+    if (!lastName || lastName.trim() === '') errors.lastName = 'Please provide a last name.';
+    if (!address || address.trim() === '') errors.address = 'Please provide an address.';
+    if (!phone || phone.trim() === '') errors.phone = 'Please provide a phone number.';
+
+    // Check if there are any errors
+    if (Object.keys(errors).length !== 0) {
+        return res.status(400).json({errors});
+        
+    }
+
+    try {
+        // Insert into orders table
+        const newOrder = await pool.query(
+            "INSERT INTO orders (email, first_name, last_name, address, apartment, phone) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
+            [email, firstName, lastName, address, apartment, phone]
+        );
+
+        const orderId = newOrder.rows[0].order_id;
+
+        // Insert each item into order_items table
+        items.forEach(async item => {
+            await pool.query(
+                "INSERT INTO order_items (order_id, watch_id, quantity) VALUES ($1, $2, $3)",
+                [orderId, item.id, item.quantity]
+            );
+        });
+
+        res.status(201).json({ message: "Order processed successfully", orderId: orderId });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json("Server Error");
+    }
+});
+
 app.listen(3001, () => {
     console.log('The server is running on port 3001');
 });

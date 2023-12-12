@@ -129,12 +129,14 @@
   }
   
 .buttons {
+    
     display:flex;
     margin-right: 1.5em;
     gap: 1em;
     margin-bottom: 1em;
     font-size: 1.3em;
     /* font-size: 20px; */
+    position: relative;
 }
 
 .searchLink {
@@ -150,6 +152,26 @@
 .cartIcon {
   max-width: 1em;
   height: 1em;
+ 
+}
+
+.cart-icon-container {
+  position: relative;
+  /* other styles */
+}
+
+.no-items-popup {
+  position: absolute;
+  top: 90%; /* Adjust to align vertically with the icon */
+  right:0;
+  background-color: #f8d7da; /* Example: light red */
+  color: #721c24; /* Example: dark red */
+  padding: 6px 14px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-size: 0.9em;
+  white-space: nowrap;
+  z-index: 3; /* Ensure it's above other elements */
 }
 
   /* APPLYING MEDIA QUERIES */

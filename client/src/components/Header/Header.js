@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import CartModal from '../CartModal/CartModal';
 import QuantityIndicator from '../QuantityIndicator/QuantityIndicator';
+import { useCart } from '../../contexts/CartContext/CartContext';
 
 
 const Header = () => {
@@ -14,6 +15,8 @@ const Header = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const [isNavExpanded, setIsNavExpanded] = useState(false);
+  const { cart } = useCart();
+  const [showNoItemsPopup, setShowNoItemsPopup] = useState(false);
 
    // Function to toggle the navbar expansion
    const toggleNav = () => {
@@ -59,7 +62,13 @@ const Header = () => {
   }
 
   const showCartModal = () => {
+    if (cart.items.length > 0) {
     setShowCart(true);
+    }
+    else {
+      setShowNoItemsPopup(true);
+      setTimeout(() => setShowNoItemsPopup(false), 4000); // Hide popup after 3 seconds
+    }
   }
 
   return (
@@ -84,6 +93,7 @@ const Header = () => {
           <QuantityIndicator>
           <Link to="#"><img className='cartIcon' src="/watch_shop/cart_icon.png" alt="seracIcon" onClick={showCartModal} /></Link>
           </QuantityIndicator>
+          {showNoItemsPopup && <div className="no-items-popup">No items in the cart.</div>}
           <div>
           <img className='accountIcon' src="/watch_shop/account_icon.png" alt="accountIcon" onClick={handleAccountIconClick} />
           </div>
