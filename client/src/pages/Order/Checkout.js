@@ -4,6 +4,7 @@ import { useCart } from '../../contexts/CartContext/CartContext.js';
 import QuantityIndicator from '../../components/QuantityIndicator/QuantityIndicator.js';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Overlay from '../../components/NoInteractionOverlay/Overlay.js';
 
 export const Checkout = () => {
   const navigate = useNavigate();
@@ -106,10 +107,11 @@ export const Checkout = () => {
         const response = await axios.post('http://localhost:3001/checkout', orderData);
         console.log(response.data);
         // Clear the cart
-        dispatch({ type: 'CLEAR_CART' });
+        
          // Show confirmation popup
          setShowConfirmation(true);
          setTimeout(() => {
+          dispatch({ type: 'CLEAR_CART' });
           navigate('/shop'); // Replace '/shop' with the actual path to your shop
         }, 3000); // 3 seconds delay
     } catch (error) {
@@ -123,14 +125,14 @@ export const Checkout = () => {
     }
   };
 
-  const calculateTotal = () => cart.items.reduce((total, item) => total + (item.price * item.quantity), 0);
+  const calculateTotal = () => cart.items.reduce((total, item) => total + 10 + (item.price * item.quantity), 0);
 
   return (
-    <div className="checkout-container">
-      {showConfirmation && (
-                <div className="confirmation-popup">
-                    Order placed successfully!
-                </div>
+    <div className={`checkout-container ${showConfirmation ? 'no-interaction' : ''}`}>
+       {showConfirmation && (
+        <Overlay>
+          Order placed successfully!
+        </Overlay>
       )}
       <div className="form-container">
         {/* Contact Section */}
@@ -237,10 +239,14 @@ export const Checkout = () => {
             </div> 
           ))}
           <div className="summary-total">
-            <span>Shipping: $10</span>
-            <br></br>
-            <span>Total: </span>
-            <span>${calculateTotal().toFixed(2)}</span>
+            <div className='summary-total-left-column'>
+              <span>Shipping: </span>
+              <span>Total: </span>
+            </div>
+            <div className='summary-total-right-column'>
+              <span>$10</span>
+              <span>${(calculateTotal().toFixed(2))}</span>  
+            </div>
           </div>
         </div>
       </div>

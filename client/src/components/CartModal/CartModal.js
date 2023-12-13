@@ -53,6 +53,12 @@ const CartModal = ({ setShowCart }) => {
     const removeFromCart = (itemId) => {
         dispatch({ type: 'REMOVE_ITEM', payload: itemId });
       };
+    
+    useEffect(() => {
+        if (cart.items.length === 0) {
+            onClose();  
+        }
+    }, [cart.items.length, onClose]);
 
     const hasItemsInCart = cart.items && cart.items.length > 0;
     const calculateTotal = () => cart.items.reduce((total, item) => total + (item.price * item.quantity), 0);
