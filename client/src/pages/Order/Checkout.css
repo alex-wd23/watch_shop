@@ -209,64 +209,101 @@
   to { opacity: 1; }
 }
 
-/* Checkbox Container */
+/* Adjust the checkbox container */
 .input-group-checkbox {
+  position: relative;
   display: flex;
   align-items: center;
-  margin-top: 15px;
+  height: 20px; /* Height of the checkbox for alignment */
 }
 
-.custom-checkbox {
-  width: 20px;
-  height: 20px;
-  margin-right: 10px;
-  border: 2px solid #555;
-  position: relative;
-  cursor: pointer;
-  display: inline-block;
-  vertical-align: middle;
-  flex-shrink: 0; /* Prevents the checkbox from shrinking */
-}
-
-.input-group-checkbox input[type='checkbox'] {
-  
+/* Hide the default checkbox but keep it in the flow for accessibility */
+.input-group-checkbox input {
   position: absolute;
+  opacity: 0;
   cursor: pointer;
-  height: 20px; /* Same as the custom checkbox */
-  width: 20px; /* Same as the custom checkbox */
-  z-index: 1; /* Brings the input to the front */
-  
+  height: 24px;
+  width: 24px;
+  left: 0;
+  margin: 0;
+  z-index: 2; /* Ensure it's above the pseudo-element */
 }
 
+/* Custom Checkbox */
+.custom-checkbox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 24px;
+  width: 24px;
+  background-color: #eee;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 2px solid #dcdcdc;
+  z-index: 1;
+
+}
+
+/* On mouse-over, add a grey background color */
+.input-group-checkbox:hover input ~ .custom-checkbox {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.input-group-checkbox input:checked ~ .custom-checkbox {
+  background-color: #000000;
+  border-color: #000000;
+}
+
+/* Actual Checkbox Input */
+.input-group-checkbox input[type='checkbox'] {
+  position: absolute;
+  z-index: 2; /* Above the custom checkbox */
+  width: 20px; /* Same as custom checkbox */
+  height: 20px; /* Same as custom checkbox */
+  margin: 0;
+  opacity: 0; /* Hide the default checkbox but keep it clickable */
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
 .custom-checkbox:after {
-  content: '';
+  content: "";
   position: absolute;
   display: none;
-  left: 6px;
+  left: 7px;
   top: 2px;
   width: 5px;
   height: 10px;
   border: solid white;
   border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+  z-index:1;
   
 }
 
-.input-group-checkbox input[type='checkbox']:checked + .custom-checkbox {
-  background-color: #4CAF50;
-  border-color: #4CAF50;
-}
-
-.input-group-checkbox input[type='checkbox']:checked + .custom-checkbox:after {
+/* Show the checkmark when checked */
+.input-group-checkbox input:checked ~ .custom-checkbox:after {
   display: block;
+  opacity: 1;
 }
 
+/* Label */
 .input-group-checkbox label {
+  
   font-size: 0.9em;
   color: #333;
-  cursor: pointer; /* Makes the label clickable */
+  cursor: pointer;
+  position: absolute;
+  left: 2.5rem; /* Align with the text next to the custom checkbox */
+  top: 0; /* Align to the top of the container */
+  bottom: 0; /* Align to the bottom of the container */
+  display: flex;
+  align-items: center; /* Center the text vertically */
+  pointer-events: auto;
+  cursor: pointer;
 }
-
 
 
 /* Responsive Design */

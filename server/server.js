@@ -258,7 +258,7 @@ app.post("/resetpassword", async (req, res) => {
 
 app.get("/products", async (req, res) => {
     try {
-        const allProducts = await pool.query("SELECT * FROM watches");
+        const allProducts = await pool.query("SELECT * FROM watches ORDER BY id ASC");
 
         // Convert the price to a number
         const productsWithConvertedPrices = allProducts.rows.map(product => ({

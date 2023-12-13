@@ -154,6 +154,10 @@
     justify-content: center; /* Center horizontally */
   }
 
+
+.stock-warning {
+    color:red;
+}
 /* Simple scaling animation */
 @keyframes slideInRight {
     from {

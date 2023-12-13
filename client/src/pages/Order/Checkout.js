@@ -245,7 +245,7 @@ export const Checkout = () => {
               console.log('Checkbox Clicked', e.target.checked);}}
             />
             <span className="custom-checkbox"></span> 
-            <label htmlFor="save-info">Save this information for next time</label>
+            <label className='checbox-label' htmlFor="save-info">Save this information for next time</label>
           </div>
           <button  onClick={handleCheckout} className='shipping-button'>Finish order</button>
         </div>
