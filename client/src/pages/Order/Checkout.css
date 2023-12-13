@@ -4,6 +4,7 @@
     min-width: 100vw; /* Use full width */
     margin: 0 auto;
     justify-content: stretch; /* Stretch children to fill the horizontal space */
+ 
   }
   
   
@@ -31,7 +32,6 @@
     height: auto;
     padding-top:5vw ;
     padding-left: 20vw;
-
   }
   
   .form-section {
@@ -208,6 +208,66 @@
   from { opacity: 0; }
   to { opacity: 1; }
 }
+
+/* Checkbox Container */
+.input-group-checkbox {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.custom-checkbox {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  border: 2px solid #555;
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0; /* Prevents the checkbox from shrinking */
+}
+
+.input-group-checkbox input[type='checkbox'] {
+  
+  position: absolute;
+  cursor: pointer;
+  height: 20px; /* Same as the custom checkbox */
+  width: 20px; /* Same as the custom checkbox */
+  z-index: 1; /* Brings the input to the front */
+  
+}
+
+.custom-checkbox:after {
+  content: '';
+  position: absolute;
+  display: none;
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+  
+}
+
+.input-group-checkbox input[type='checkbox']:checked + .custom-checkbox {
+  background-color: #4CAF50;
+  border-color: #4CAF50;
+}
+
+.input-group-checkbox input[type='checkbox']:checked + .custom-checkbox:after {
+  display: block;
+}
+
+.input-group-checkbox label {
+  font-size: 0.9em;
+  color: #333;
+  cursor: pointer; /* Makes the label clickable */
+}
+
+
 
 /* Responsive Design */
 /* Large Screens */

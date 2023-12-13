@@ -228,6 +228,42 @@
   transform: scale(0.95);
 }
 
+
+/* Styles for out of stock and low stock functionalities */
+.grayscale {
+  filter: grayscale(100%);
+}
+
+.out-of-stock-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.2rem;
+  z-index: 1;
+}
+
+.low-stock-warning {
+  min-height: 20px;
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 5px;
+  text-align: center;
+}
+
+.product .button-87.disabled {
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+}
+
+
 @media (max-width: 768px) { 
   .productContainer {
       flex-direction: column;

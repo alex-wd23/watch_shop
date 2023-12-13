@@ -375,3 +375,24 @@ app.post('/checkout', async (req, res) => {
 app.listen(3001, () => {
     console.log('The server is running on port 3001');
 });
+
+
+// Endpoint to update stock after a purchase
+app.post('/updateStock', async (req, res) => {
+    try {
+        const { watch_id, quantity } = req.body;
+        const updateStock = await pool.query(
+            "UPDATE watches SET stock = stock - $1 WHERE id = $2 AND stock >= $1 RETURNING *",
+            [quantity, watch_id]
+        );
+
+        if (updateStock.rows.length > 0) {
+            res.json({ message: "Stock updated successfully", updatedProduct: updateStock.rows[0] });
+        } else {
+            res.status(400).json("Not enough stock or product not found");
+        }
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).json("Server Error");
+    }
+});

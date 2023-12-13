@@ -14,7 +14,11 @@ const Product = ({ products }) => {
   const { cart , dispatch} = useCart();
 
   const addToCart = (product) => {
-    dispatch({ type: 'ADD_ITEM', payload: product });
+    if (product.stock === 0) {
+      alert('This item is out of stock.'); // Or use a more sophisticated notification system
+    } else {
+      dispatch({ type: 'ADD_ITEM', payload: product });
+    }
   };
 
   const removeFromCart = (itemId) => {
@@ -32,35 +36,51 @@ const Product = ({ products }) => {
 
   return (
     <div className="productContainer">
-     {products.map((product) => (
-      <div className="product" key={product.id}>
-        <div className="imageContainer" >
-          <img className='productImage' src={product.image_url} alt={product.name} onClick={() => showProduct(product)} />
-          <div className="bottom-right"></div>
-          <div className="bottom-right-vertical"></div>
-          <div className="bottom-left"></div>
-          <div className="bottom-left-vertical"></div>
-          <div className="top-left"></div>
-          <div className="top-left-vertical"></div>
-          <div className="top-right"></div>
-          <div className="top-right-vertical"></div>
-        </div>
-        <div>{product.name}</div>
-        <div>${product.price}</div>
-        {isProductInCart(product.id) ? (
-          <div className="quantity-control">
-            <p className="quantity-button" onClick={() => removeFromCart(product.id)}>-</p>
-            <div className="quantity-display">{getProductQuantity(product.id)}</div>
-            <p className="quantity-button" onClick={() => addToCart(product)}>+</p>
+      {products.map((product) => (
+        <div className={`product ${product.stock === 0 ? 'out-of-stock' : ''}`} key={product.id}>
+          <div className="imageContainer">
+            <img
+              className={`productImage ${product.stock === 0 ? 'grayscale' : ''}`}
+              src={product.image_url}
+              alt={product.name}
+              onClick={() => showProduct(product)}
+            />
+            {product.stock === 0 && (
+              <div className="out-of-stock-overlay">Out of Stock</div>
+            )}
           </div>
-        ) : (
-          <button className='button-87' onClick={() => addToCart(product)}>ADD TO CART</button>
-        )}
-      </div>
+          <div className="productDetails">
+            <div className="productName">{product.name}</div>
+            <div className="productPrice">${product.price}</div>
+           
+            <div className="productActions">
+              {isProductInCart(product.id) ? (
+                <div className="quantity-control">
+                  <button className="quantity-button" onClick={() => removeFromCart(product.id)}>-</button>
+                  <span className="quantity-display">{getProductQuantity(product.id)}</span>
+                  <button className="quantity-button" onClick={() => addToCart(product)}>+</button>
+                </div>
+              ) : (
+                <button className={`button-87 ${product.stock === 0 ? 'disabled' : ''}`}
+                        onClick={() => addToCart(product)}
+                        disabled={product.stock === 0}>
+                  ADD TO CART
+                </button>
+              )}
+               {product.stock < 3 && product.stock > 0 ? 
+              <div className="low-stock-warning">Only {product.stock} left in stock!</div>
+             : <div className="low-stock-warning"></div>}
+            </div>
+          </div>
+        </div>
       ))}
-      {selectedProduct && <ProductDescriptionModal product={selectedProduct} onClose={() => setSelectedProduct(null)} />}
+      {selectedProduct && (
+        <ProductDescriptionModal
+          product={selectedProduct}
+          onClose={() => setSelectedProduct(null)}
+        />
+      )}
     </div>
   );
 };
-
 export default Product;

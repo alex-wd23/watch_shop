@@ -7,19 +7,22 @@ import { useNavigate } from 'react-router-dom';
 import Overlay from '../../components/NoInteractionOverlay/Overlay.js';
 
 export const Checkout = () => {
-  const navigate = useNavigate();
-  const [showConfirmation, setShowConfirmation] = useState(false);
-  const [formErrors, setFormErrors] = useState({});
-  const [formData, setFormData] = useState({
+
+  const savedInfo = JSON.parse(localStorage.getItem('checkoutInfo'));
+  const [saveInfo, setSaveInfo] = useState(false);
+  const [formData, setFormData] = useState(savedInfo || {
     email: '',
     firstName: '',
     lastName: '',
-    address:'',
-    apartment:'',
-    phone:'',
-    // Add other fields as necessary
+    address: '',
+    apartment: '',
+    phone: '',
+    // ... other fields ...
   });
   const { cart, dispatch } = useCart();
+  const navigate = useNavigate();
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [formErrors, setFormErrors] = useState({});
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -103,17 +106,31 @@ export const Checkout = () => {
         items: cart.items
     };
 
+    if (saveInfo) {
+      localStorage.setItem('checkoutInfo', JSON.stringify(formData));
+    }
+
     try {
         const response = await axios.post('http://localhost:3001/checkout', orderData);
-        console.log(response.data);
-        // Clear the cart
+
+        for (const item of cart.items) {
+          await axios.post('http://localhost:3001/updateStock', {
+            watch_id: item.id,
+            quantity: item.quantity
+          });
+        }
         
          // Show confirmation popup
          setShowConfirmation(true);
          setTimeout(() => {
+          // Clear the cart
           dispatch({ type: 'CLEAR_CART' });
-          navigate('/shop'); // Replace '/shop' with the actual path to your shop
+          navigate('/shop'); 
         }, 3000); // 3 seconds delay
+
+
+
+
     } catch (error) {
       if (error.response && error.response.status === 400) {
         // Log validation errors from the server
@@ -217,6 +234,18 @@ export const Checkout = () => {
               />
             <label htmlFor="phone" className={formData.phone ? 'filled' : ''}>Phone</label>
             {formErrors.phone && <span className="error-message">{formErrors.phone}</span>}
+          </div>
+          <div className="input-group input-group-checkbox">
+            <input
+              type="checkbox"
+              id="save-info"
+              name="saveInfo"
+              checked={saveInfo}
+              onChange={(e) => {setSaveInfo(e.target.checked);   
+              console.log('Checkbox Clicked', e.target.checked);}}
+            />
+            <span className="custom-checkbox"></span> 
+            <label htmlFor="save-info">Save this information for next time</label>
           </div>
           <button  onClick={handleCheckout} className='shipping-button'>Finish order</button>
         </div>
