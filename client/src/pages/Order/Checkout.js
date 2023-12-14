@@ -236,16 +236,16 @@ export const Checkout = () => {
             {formErrors.phone && <span className="error-message">{formErrors.phone}</span>}
           </div>
           <div className="input-group input-group-checkbox">
-            <input
+          <input
               type="checkbox"
               id="save-info"
               name="saveInfo"
               checked={saveInfo}
-              onChange={(e) => {setSaveInfo(e.target.checked);   
-              console.log('Checkbox Clicked', e.target.checked);}}
-            />
-            <span className="custom-checkbox"></span> 
+              onChange={(e) => setSaveInfo(e.target.checked)}
+              className="hidden-checkbox"
+            />            
             <label className='checbox-label' htmlFor="save-info">Save this information for next time</label>
+            <div className="custom-checkbox" onClick={() => {setSaveInfo(!saveInfo); console.log(saveInfo)}}></div>
           </div>
           <button  onClick={handleCheckout} className='shipping-button'>Finish order</button>
         </div>

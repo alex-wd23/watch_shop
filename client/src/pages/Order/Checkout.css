@@ -241,6 +241,7 @@
   cursor: pointer;
   border: 2px solid #dcdcdc;
   z-index: 1;
+  pointer-events: auto;
 
 }
 
@@ -301,8 +302,17 @@
   bottom: 0; /* Align to the bottom of the container */
   display: flex;
   align-items: center; /* Center the text vertically */
-  pointer-events: auto;
+ 
+}
+
+.hidden-checkbox {
+  position: absolute;
+  opacity: 0;
   cursor: pointer;
+  height: 0;
+  width: 0;
+  margin: 0;
+  z-index: -1; /* Hide the actual checkbox visually but keep it accessible */
 }
 
 
