@@ -377,7 +377,7 @@ app.listen(3001, () => {
 });
 
 
-// Endpoint to update stock after a purchase
+// Endpoint to query the stock
 app.post('/updateStock', async (req, res) => {
     try {
         const { watch_id, quantity } = req.body;
@@ -393,6 +393,23 @@ app.post('/updateStock', async (req, res) => {
         }
     } catch (error) {
         console.error(error.message);
+        res.status(500).json("Server Error");
+    }
+});
+
+// Endpoint to update stock after a purchase
+app.get('/getStock', async (req, res) => {
+    const { watch_id } = req.query;
+    try {
+        const stock = await pool.query(
+        "SELECT stock from watches where id = $1",[watch_id]
+        );
+        if (stock.rows.length > 0) {
+            res.json(stock.rows[0].stock); // Send the stock number as a response
+        } else {
+            res.status(404).json("Product not found");
+        }
+    } catch (error) {
         res.status(500).json("Server Error");
     }
 });

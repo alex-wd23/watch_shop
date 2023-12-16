@@ -315,6 +315,10 @@
   z-index: -1; /* Hide the actual checkbox visually but keep it accessible */
 }
 
+.stock-info {
+  color: red;
+  
+}
 
 /* Responsive Design */
 /* Large Screens */

@@ -80,7 +80,6 @@ const CartModal = ({ setShowCart }) => {
                         <div className="quantity-display">{item.quantity}</div>
                         <p className="quantity-button" onClick={() => addToCart(item.id)}>+</p>
                         </div>
-                        {item.stock < 3 && <div className="stock-warning">Only {item.stock} left. Order soon!</div>}
                     </div>
                 </div>
                 ))}

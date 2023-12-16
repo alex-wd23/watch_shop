@@ -38,12 +38,11 @@ const Product = ({ products }) => {
     <div className="productContainer">
       {products.map((product) => (
         <div className={`product ${product.stock === 0 ? 'out-of-stock' : ''}`} key={product.id}>
-          <div className="imageContainer">
+          <div className="imageContainer"  onClick={() => showProduct(product)}>
             <img
               className={`productImage ${product.stock === 0 ? 'grayscale' : ''}`}
               src={product.image_url}
-              alt={product.name}
-              onClick={() => showProduct(product)}
+              alt={product.name}  
             />
             {product.stock === 0 && (
               <div className="out-of-stock-overlay">Out of Stock</div>

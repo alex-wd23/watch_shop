@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Checkout.css';
 import { useCart } from '../../contexts/CartContext/CartContext.js';
 import QuantityIndicator from '../../components/QuantityIndicator/QuantityIndicator.js';
@@ -7,6 +7,13 @@ import { useNavigate } from 'react-router-dom';
 import Overlay from '../../components/NoInteractionOverlay/Overlay.js';
 
 export const Checkout = () => {
+  const { cart, dispatch } = useCart();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (cart.items.length === 0) {
+      navigate('/shop'); // Redirect to the shop page or cart page
+    }
+  }, [cart.items, navigate]);
 
   const savedInfo = JSON.parse(localStorage.getItem('checkoutInfo'));
   const [saveInfo, setSaveInfo] = useState(false);
@@ -19,16 +26,21 @@ export const Checkout = () => {
     phone: '',
     // ... other fields ...
   });
-  const { cart, dispatch } = useCart();
-  const navigate = useNavigate();
+
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const [showError, setShowError] = useState(false);
   const [formErrors, setFormErrors] = useState({});
+  const [stockInfo, setStockInfo] = useState({});
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
     // Revalidate the form to update error messages
     validateFormOnChange(name, value);
+  };
+
+  const handleCloseError = () => {
+    setShowError(false);
   };
 
   const validateForm = () => {
@@ -58,9 +70,6 @@ export const Checkout = () => {
         errors.lastName = 'The name cannot include numbers.';
     }
     setFormErrors(errors);
-    console.log(formData.phone)
-  
-
     return Object.keys(errors).length === 0; // Return true if no errors
   };
 
@@ -128,13 +137,22 @@ export const Checkout = () => {
           navigate('/shop'); 
         }, 3000); // 3 seconds delay
 
-
-
-
     } catch (error) {
       if (error.response && error.response.status === 400) {
         // Log validation errors from the server
         console.log("Validation errors:", error.response.data.errors);
+        setShowError(true);
+        const updatedStockInfo = {};
+      for (const item of cart.items) {
+        try {
+          const response = await axios.get(`http://localhost:3001/getStock?watch_id=${item.id}`);
+          updatedStockInfo[item.id] = response.data;
+          console.log(updatedStockInfo)
+        } catch (err) {
+          console.error("Error fetching stock info:", err);
+        }
+      }
+      setStockInfo(updatedStockInfo);
       } else {
         // Log other types of errors
         console.error("Checkout error:", error);
@@ -146,11 +164,16 @@ export const Checkout = () => {
 
   return (
     <div className={`checkout-container ${showConfirmation ? 'no-interaction' : ''}`}>
-       {showConfirmation && (
-        <Overlay>
-          Order placed successfully!
-        </Overlay>
-      )}
+    {showConfirmation && (
+      <Overlay success={showConfirmation}>
+        Order placed successfully!
+      </Overlay>
+    )}
+    {showError && (
+      <Overlay error={showError} onClose={handleCloseError}>
+        One or more products are not in stock!
+      </Overlay>
+    )}
       <div className="form-container">
         {/* Contact Section */}
         <div className="form-section">
@@ -263,7 +286,11 @@ export const Checkout = () => {
                 <div className="cart-item-name">{item.name}</div>
                 <div className="cart-item-description">{item.description}</div>
                 <div className="cart-item-price">${(item.price * item.quantity).toFixed(2)}</div>
-                {/* <div className="quantity-display">{item.quantity}</div> */}
+                {showError && stockInfo[item.id] !== undefined && (
+                <div className="stock-info">
+                  Available stock: {stockInfo[item.id]}
+                </div>
+              )}
               </div>
             </div> 
           ))}

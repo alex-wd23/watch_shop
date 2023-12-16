@@ -14,3 +14,32 @@
 .no-interaction {
     pointer-events: none;
  }
+
+.popup {
+    /* Common styles for both popups */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    /* Add other common styles here */
+    position: relative;
+}
+
+.error-popup {
+    /* Styles specific to error popup */
+    background-color: rgb(190, 96, 96); /* Red background for error */
+    color: white; /* White text for better contrast */
+}
+
+.close-button {
+    border: none;
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(190, 96, 96); 
+    width: 20px;
+    height: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.8em;
+}
