@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Oswald:wght@700&display=swap');
 /* Header styling */
 /* UTILITIES */
-* {
+/* * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -10,7 +10,7 @@
   
   body {
     font-family: cursive;
-  }
+  } */
   
   a {
     text-decoration: none;
@@ -36,6 +36,7 @@
     box-shadow: #333 1px 3px 4px; */
     position: relative;
     z-index:2;
+    
 
   }
   

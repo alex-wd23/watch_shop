@@ -13,7 +13,7 @@ const cookieParser = require('cookie-parser');
 
 // Middleware
 const corsOptions = {
-    origin: 'http://localhost:3000', // Front-end origin
+    origin: ['http://localhost:3000', 'http://192.168.1.236:3000'], // Front-end origin
     credentials: true, // Allow cookies to be sent
     optionsSuccessStatus: 200 
   };
@@ -372,11 +372,6 @@ app.post('/checkout', async (req, res) => {
     }
 });
 
-app.listen(3001, () => {
-    console.log('The server is running on port 3001');
-});
-
-
 // Endpoint to query the stock
 app.post('/updateStock', async (req, res) => {
     try {
@@ -412,4 +407,10 @@ app.get('/getStock', async (req, res) => {
     } catch (error) {
         res.status(500).json("Server Error");
     }
+});
+
+
+// 0.0.0.0 used for testing on phone
+app.listen(3001, '0.0.0.0', () => {
+    console.log('The server is running on port 3001');
 });

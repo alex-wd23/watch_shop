@@ -120,7 +120,7 @@ export const Checkout = () => {
     }
 
     try {
-        const response = await axios.post('http://localhost:3001/checkout', orderData);
+        await axios.post('http://localhost:3001/checkout', orderData);
 
         for (const item of cart.items) {
           await axios.post('http://localhost:3001/updateStock', {
@@ -128,7 +128,6 @@ export const Checkout = () => {
             quantity: item.quantity
           });
         }
-        
          // Show confirmation popup
          setShowConfirmation(true);
          setTimeout(() => {
@@ -153,6 +152,7 @@ export const Checkout = () => {
         }
       }
       setStockInfo(updatedStockInfo);
+      console.log(stockInfo)
       } else {
         // Log other types of errors
         console.error("Checkout error:", error);
@@ -270,7 +270,7 @@ export const Checkout = () => {
             <label className='checbox-label' htmlFor="save-info">Save this information for next time</label>
             <div className="custom-checkbox" onClick={() => {setSaveInfo(!saveInfo); console.log(saveInfo)}}></div>
           </div>
-          <button  onClick={handleCheckout} className='shipping-button'>Finish order</button>
+          <button onClick={handleCheckout} className='shipping-button'>Finish order</button>
         </div>
       </div>
       <div className="divider"></div> 
@@ -284,14 +284,14 @@ export const Checkout = () => {
               </QuantityIndicator>
               <div className="cart-item-details">
                 <div className="cart-item-name">{item.name}</div>
-                <div className="cart-item-description">{item.description}</div>
+                {/* <div className="cart-item-description">{item.description}</div> */}
                 <div className="cart-item-price">${(item.price * item.quantity).toFixed(2)}</div>
-                {showError && stockInfo[item.id] !== undefined && (
+                {showError && stockInfo[item.id] !== undefined && stockInfo[item.id] < item.quantity ? (
                 <div className="stock-info">
                   Available stock: {stockInfo[item.id]}
-                </div>
-              )}
-              </div>
+                </div> 
+              ): <div className='stock-info-placeholder'></div>}
+              </div> 
             </div> 
           ))}
           <div className="summary-total">

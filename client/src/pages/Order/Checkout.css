@@ -1,387 +1,427 @@
-  .checkout-container {
-    display: flex;
-    min-height: 100vh; /* Use viewport height to fill the screen vertically */
-    min-width: 100vw; /* Use full width */
-    margin: 0 auto;
-    justify-content: stretch; /* Stretch children to fill the horizontal space */
- 
-  }
+    .checkout-container {
+      display: flex;
+      min-height: 100vh; /* Use viewport height to fill the screen vertically */
+      min-width: 100vw; /* Use full width */
+      margin: 0 auto;
+      justify-content: stretch; /* Stretch children to fill the horizontal space */
   
-  
-  .confirmation-popup {
-    background-color: #333;
-    color: white;
-    padding: 20px;
-    border-radius: 10px;
-    border: 2px solid #555;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.7);
-  }
-  
-  .error-message {
-    color: red;
-    font-size: 0.8em;
-    animation: fadeIn 0.5s ease-out; /* Apply the fadeIn animation over 0.5 seconds */
-  }
-
-  /* Left column styles */
-  .form-container {
-    flex: 1;
-    padding-right: 20px; /* Adjust spacing as needed */
-    background-color: white;
-    width: auto;
-    height: auto;
-    padding-top:5vw ;
-    padding-left: 20vw;
-  }
-  
-  .form-section {
-    padding: 20px;
-    margin-bottom: 20px;
-    /* border: 1px solid #ccc; */
-    /* box-shadow: 2px 2px 5px rgba(0,0,0,0.1); */
-  }
-  
-  .section-header {
-    margin-bottom: 15px;
-    font-weight: bold;
-  }
-  
-  .input-row {
-    display: flex;
-    gap: 10px; /* Creates space between your inputs */
-  }
-  
-  .input-group {
-    flex: 1; /* Makes each input group take equal space */
-    position: relative;
-    margin-bottom: 15px;
-    font-size: 0.8em;
-  }
-  
-  
-  .input-group input[type="text"],
-  .input-group input[type="email"],
-  .input-group input[type="firstName"],
-  .input-group input[type="lastName"],
-  .input-group input[type="address"],
-  .input-group input[type="apartment"],
-  .input-group input[type="phone"] {
-      padding: 10px;
-      border: 1px solid #ccc;
-      width: 100%;
-      box-sizing: border-box;
+    }
+    
+    
+    .confirmation-popup {
+      background-color: #333;
+      color: white;
+      padding: 20px;
       border-radius: 10px;
-  }
-  
-  .input-group label {
-    position: absolute;
-    top: 30px;
-    left: 10px;
-    transition: top 0.2s, font-size 0.2s;
-    color: #888;
-    pointer-events: none; /* Let clicks through to the input */
-  }
-  
-  .input-group input:focus + label,
-  .input-group input.filled + label {
-    top: -10px;
-    font-size: 12px;
-    color: #333;
-  }
-  
-  .input-group input:focus,
-  .input-group input.filled {
-    outline: none;
-    border-color: #555;
-  }
+      border: 2px solid #555;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.7);
+    }
+    
+    .error-message {
+      color: red;
+      font-size: 0.8em;
+      animation: fadeIn 0.5s ease-out; /* Apply the fadeIn animation over 0.5 seconds */
+    }
 
+    /* Left column styles */
+    .form-container {
+      flex: 1;
+      padding-right: 20px; /* Adjust spacing as needed */
+      background-color: white;
+      width: auto;
+      height: auto;
+      padding-top:5vw ;
+      padding-left: 20vw;
+    }
+    
+    .form-section {
+      padding: 20px;
+      margin-bottom: 20px;
+      /* border: 1px solid #ccc; */
+      /* box-shadow: 2px 2px 5px rgba(0,0,0,0.1); */
+    }
+    
+    .section-header {
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+    
+    .input-row {
+      display: flex;
+      gap: 10px; /* Creates space between your inputs */
+    }
+    
+    .input-group {
+      flex: 1; /* Makes each input group take equal space */
+      position: relative;
+      margin-bottom: 15px;
+      font-size: 0.8em;
+    }
+    
+    
+    .input-group input[type="text"],
+    .input-group input[type="email"],
+    .input-group input[type="firstName"],
+    .input-group input[type="lastName"],
+    .input-group input[type="address"],
+    .input-group input[type="apartment"],
+    .input-group input[type="phone"] {
+        padding: 10px;
+        border: 1px solid #ccc;
+        width: 100%;
+        box-sizing: border-box;
+        border-radius: 10px;
+    }
+    
+    .input-group label {
+      position: absolute;
+      top: 30px;
+      left: 10px;
+      transition: top 0.2s, font-size 0.2s;
+      color: #888;
+      pointer-events: none; /* Let clicks through to the input */
+    }
+    
+    .input-group input:focus + label,
+    .input-group input.filled + label {
+      top: -10px;
+      font-size: 12px;
+      color: #333;
+    }
+    
+    .input-group input:focus,
+    .input-group input.filled {
+      outline: none;
+      border-color: #555;
+    }
+
+    
+    /* Right column styles */
+    .summary-container {
+      display: flex;
+      flex-direction: column;
+      background-color: rgb(250,250,250);
+      width: auto;
+      height: auto;
+      padding-top:5vw ;
+      padding-right: 10vw;
+    }
+    
+    .summary-box {
+      position: sticky;
+      top: 20px;
+      /* border: 1px solid #ccc; */
+      padding: 20px;
+    }
+    
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+     
+    }
+    
+    .summary-total {
+      border-top: 1px solid grey;
+      display:flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: row;
+      font-weight: bold;
+      padding-top: 10px;
+      margin-top: 10px;
+      margin-left: 13px;
+    }
+
+    .summary-total-left-column {
+      display: flex;
+      flex-direction: column;
+      /* margin-right: 25px; */
+      
+    }
+
+    .summary-total-left-column, .summary-total-right-column {
+      /* Align with cart item name and price */
+      flex-basis: 50%; /* Adjust as needed */
+    }
+    
+
+    .summary-total-right-column {
+      display: flex;
+      flex-direction: column;
+      margin-left:3.2vw;
+    }
+
+    .summary-box .cart-item-description {
+      margin-right: 1vw;
+    }
+
+    .shipping-button {
+      background: black;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      display: inline-block;
+      margin-top: 20px;
+      max-width: 200px;
+      height: 50px;
+      border-radius: 2em;
+    }
+    
+    .summary-container {
+      display: flex;
+      flex-direction: row;
+      padding-left: 1vw;
+      flex:1;
+      
+    }
+
+    .no-underline {
+      text-decoration: none; /* Remove underline */
+    }
+
+    .divider {
+      width: 1px; 
+      background-color: rgb(221, 218, 218);
+    }
+
+    .summary-total, .cart-item {
+      position: relative; /* This ensures that the remove button can be positioned relative to the cart item */
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 10px;
+      border-bottom: none;
+      gap: 1vw;
+    }
   
-  /* Right column styles */
-  .summary-container {
-    flex: 1;
-    background-color: rgb(250,250,250);
-    width: auto;
-    height: auto;
-    padding-top:5vw ;
-    padding-right: 10vw;
-  }
-  
-  .summary-box {
-    position: sticky;
-    top: 20px;
-    /* border: 1px solid #ccc; */
-    padding: 20px;
-  }
-  
-  .summary-item {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-  }
-  
-  .summary-total {
-    border-top: 1px solid grey;
+  .checkout-container .cart-item-details {
     display:flex;
-    flex-direction: row;
-    font-weight: bold;
-    padding-top: 10px;
-    margin-top: 10px;
-    gap: 190px;
-    margin-left: 13px;
-  }
-
-  .summary-total-left-column {
-    display: flex;
     flex-direction: column;
-    margin-right: 1px;
-  }
-  
+    align-items: flex-start;
 
-  .summary-total-right-column {
+  }
+
+  .cart-item .quantity-indicator {
+      position: absolute;
+      bottom: 75px; /* Adjust if necessary */
+      background-color: rgb(179, 170, 170);
+      color: rgb(0, 0, 0);
+      border-radius: 50%; /* Keep it 50% for perfect circle */
+      padding: 10px; /* Increase padding to make the circle bigger */
+      font-size: 1.2em; /* Adjust font size as needed */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px; /* Set a specific width */
+      height: 30px; /* Set a specific height */
+      text-align: center;
+      margin-left: 90px;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* Adjust the checkbox container */
+  .input-group-checkbox {
+    position: relative;
     display: flex;
-    flex-direction: column;
-  }
-
-  .summary-box .cart-item-description {
-    margin-right: 1vw;
-  }
-
-  .shipping-button {
-    background: black;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    display: inline-block;
-    margin-top: 20px;
-    max-width: 200px;
-    height: 50px;
-    border-radius: 2em;
-  }
-  
-  .summary-container, .cart-item-details {
-    display: flex;
-    flex-direction: row;
-    gap: 1vw;
-    padding-left: 1vw;
-  }
-
-  .no-underline {
-    text-decoration: none; /* Remove underline */
-  }
-
-  .divider {
-    /* border: none; */
-    width: 1px; 
-    background-color: rgb(221, 218, 218);
-  }
-
-  .summary-box .cart-item {
-    position: relative; /* This ensures that the remove button can be positioned relative to the cart item */
-    display: flex;
-    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding: 10px;
-    border-bottom: none;
+    height: 20px; /* Height of the checkbox for alignment */
   }
 
-.cart-item .quantity-indicator {
+  /* Hide the default checkbox but keep it in the flow for accessibility */
+  .input-group-checkbox input {
     position: absolute;
-    bottom: 75px; /* Adjust if necessary */
-    background-color: rgb(179, 170, 170);
-    color: rgb(0, 0, 0);
-    border-radius: 50%; /* Keep it 50% for perfect circle */
-    padding: 10px; /* Increase padding to make the circle bigger */
-    font-size: 1.2em; /* Adjust font size as needed */
+    opacity: 0;
+    cursor: pointer;
+    height: 24px;
+    width: 24px;
+    left: 0;
+    margin: 0;
+    z-index: 2; /* Ensure it's above the pseudo-element */
+  }
+
+  /* Custom Checkbox */
+  .custom-checkbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 24px;
+    width: 24px;
+    background-color: #eee;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 2px solid #dcdcdc;
+    z-index: 1;
+    pointer-events: auto;
+
+  }
+
+  /* On mouse-over, add a grey background color */
+  .input-group-checkbox:hover input ~ .custom-checkbox {
+    background-color: #ccc;
+  }
+
+  /* When the checkbox is checked, add a blue background */
+  .input-group-checkbox input:checked ~ .custom-checkbox {
+    background-color: #000000;
+    border-color: #000000;
+  }
+
+  /* Actual Checkbox Input */
+  .input-group-checkbox input[type='checkbox'] {
+    position: absolute;
+    z-index: 2; /* Above the custom checkbox */
+    width: 20px; /* Same as custom checkbox */
+    height: 20px; /* Same as custom checkbox */
+    margin: 0;
+    opacity: 0; /* Hide the default checkbox but keep it clickable */
+  }
+
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .custom-checkbox:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 7px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    z-index:1;
+    
+  }
+
+  /* Show the checkmark when checked */
+  .input-group-checkbox input:checked ~ .custom-checkbox:after {
+    display: block;
+    opacity: 1;
+  }
+
+  /* Label */
+  .input-group-checkbox label {
+    
+    font-size: 0.9em;
+    color: #333;
+    cursor: pointer;
+    position: absolute;
+    left: 2.5rem; /* Align with the text next to the custom checkbox */
+    top: 0; /* Align to the top of the container */
+    bottom: 0; /* Align to the bottom of the container */
     display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px; /* Set a specific width */
-    height: 30px; /* Set a specific height */
-    text-align: center;
-    margin-left: 90px;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-/* Adjust the checkbox container */
-.input-group-checkbox {
-  position: relative;
-  display: flex;
-  align-items: center;
-  height: 20px; /* Height of the checkbox for alignment */
-}
-
-/* Hide the default checkbox but keep it in the flow for accessibility */
-.input-group-checkbox input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 24px;
-  width: 24px;
-  left: 0;
-  margin: 0;
-  z-index: 2; /* Ensure it's above the pseudo-element */
-}
-
-/* Custom Checkbox */
-.custom-checkbox {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 24px;
-  width: 24px;
-  background-color: #eee;
-  border-radius: 4px;
-  cursor: pointer;
-  border: 2px solid #dcdcdc;
-  z-index: 1;
-  pointer-events: auto;
-
-}
-
-/* On mouse-over, add a grey background color */
-.input-group-checkbox:hover input ~ .custom-checkbox {
-  background-color: #ccc;
-}
-
-/* When the checkbox is checked, add a blue background */
-.input-group-checkbox input:checked ~ .custom-checkbox {
-  background-color: #000000;
-  border-color: #000000;
-}
-
-/* Actual Checkbox Input */
-.input-group-checkbox input[type='checkbox'] {
-  position: absolute;
-  z-index: 2; /* Above the custom checkbox */
-  width: 20px; /* Same as custom checkbox */
-  height: 20px; /* Same as custom checkbox */
-  margin: 0;
-  opacity: 0; /* Hide the default checkbox but keep it clickable */
-}
-
-/* Create the checkmark/indicator (hidden when not checked) */
-.custom-checkbox:after {
-  content: "";
-  position: absolute;
-  display: none;
-  left: 7px;
-  top: 2px;
-  width: 5px;
-  height: 10px;
-  border: solid white;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-  z-index:1;
+    align-items: center; /* Center the text vertically */
   
-}
+  }
 
-/* Show the checkmark when checked */
-.input-group-checkbox input:checked ~ .custom-checkbox:after {
-  display: block;
-  opacity: 1;
-}
+  .hidden-checkbox {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+    margin: 0;
+    z-index: -1; /* Hide the actual checkbox visually but keep it accessible */
+  }
 
-/* Label */
-.input-group-checkbox label {
-  
-  font-size: 0.9em;
-  color: #333;
-  cursor: pointer;
-  position: absolute;
-  left: 2.5rem; /* Align with the text next to the custom checkbox */
-  top: 0; /* Align to the top of the container */
-  bottom: 0; /* Align to the bottom of the container */
-  display: flex;
-  align-items: center; /* Center the text vertically */
  
-}
-
-.hidden-checkbox {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-  margin: 0;
-  z-index: -1; /* Hide the actual checkbox visually but keep it accessible */
-}
-
 .stock-info {
-  color: red;
-  
+  width: 5vw; /* Adjust as needed */
+  color: red;  
+  text-wrap: nowrap;
 }
 
-/* Responsive Design */
-/* Large Screens */
-@media (min-width: 1024px) {
-  .input-group input:focus + label,
-  .input-group input.filled + label {
-    top: 1px; /* Adjust position when focused or filled */
-  }
+.stock-info-placeholder {
+  width: 5vw; /* Same as stock-info to maintain alignment */
 }
-
-/* Medium Screens */
-@media (max-width: 1023px) and (min-width: 768px) {
-  /* Styles for medium screens like tablets */
-  .form-container, .summary-container {
-    padding: 15px; /* Adjust padding for medium screens */
+  /* Responsive Design */
+  /* Large Screens */
+  @media (min-width: 1024px) {
+    .input-group input:focus + label,
+    .input-group input.filled + label {
+      top: 1px; /* Adjust position when focused or filled */
+    }
   }
 
-  .input-group input:focus + label,
-  .input-group input.filled + label {
-    top: 1px; /* Adjust position when focused or filled */
-  }
-}
+  /* Medium Screens */
+  @media (max-width: 1023px) and (min-width: 768px) {
+    /* Styles for medium screens like tablets */
+    .form-container, .summary-container {
+      padding: 15px; /* Adjust padding for medium screens */
+    }
 
-/* Small Screens */
-@media (max-width: 767px) {
-  .checkout-container {
-    flex-direction: column-reverse; /* Stack containers for small screens */
-  }
-
-  .form-container, .summary-container {
-    width: 100%; /* Full width for small screens */
-    padding: 10px; /* Reduced padding */
-  }
-
-  .input-group {
-    /* Adjust input group styles for small screens */
-  }
-
-  .input-group input[type="text"],
-  .input-group input[type="email"],
-  .input-group input[type="adress"],
-  .input-group input[type="apartment"],
-  .input-group input[type="phone"] {
-    padding: 12px; /* Adjust padding */
-    font-size: 14px; /* Adjust font size */
+    .input-group input:focus + label,
+    .input-group input.filled + label {
+      top: 1px; /* Adjust position when focused or filled */
+    }
+    .stock-info {
+      width: 10vw; /* Adjust as needed */
+      color: red;  
+    }
+    
+    /* .stock-info-placeholder {
+      width: 11vw;
+    } */
   }
 
-  .input-group label {
-    top: 30px; /* Adjust label position */
-    font-size: 13px; /* Adjust label font size */
-  }
+  /* Small Screens */
+  @media (max-width: 767px) {
 
-  .input-group input:focus + label,
-  .input-group input.filled + label {
-    top: 1px; /* Adjust position when focused or filled */
-  }
+    .checkout-container {
+      flex-direction: column-reverse; /* Stack containers for small screens */
+    }
 
-  .shipping-button, .cart-item .quantity-indicator {
-    /* Adjust button and quantity indicator sizes */
-  }
+    .form-container, .summary-container {
+      width: 100%; /* Full width for small screens */
+      padding: 10px; /* Reduced padding */
+      display: flex;
+      justify-content: center;
+    }
 
-  /* Adjustments for cart item details */
-  .summary-container .cart-item-details {
-    flex-direction: row; /* Stack details vertically */
+    .input-group input[type="text"],
+    .input-group input[type="email"],
+    .input-group input[type="adress"],
+    .input-group input[type="apartment"],
+    .input-group input[type="phone"] {
+      padding: 12px; /* Adjust padding */
+      font-size: 14px; /* Adjust font size */
+    }
+
+    .input-group label {
+      top: 30px; /* Adjust label position */
+      font-size: 13px; /* Adjust label font size */
+    }
+
+    .input-group input:focus + label,
+    .input-group input.filled + label {
+      top: 1px; /* Adjust position when focused or filled */
+    }
+
+    /* Adjustments for cart item details */
+    .summary-container .cart-item-details {
+      flex-direction: row; /* Stack details vertically */
+      /* gap: 3vw; */
+    }
+
+    /* .stock-info {
+      width: 1vw; 
+      color: red;  
+    } */
+    
+    /* .stock-info-placeholder {
+      width: 5vw; 
+    } */
+
+    .summary-total-left-column {
+      margin-right: 6vw;
+    }
   }
-}

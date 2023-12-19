@@ -1,0 +1,22 @@
+.priceRange {
+    max-width: 60%
+}
+
+.priceRange input[type="range"] {
+    width: 100%; /* Full width of the priceRange container */
+    /* Additional styles for the range input */
+}
+
+@media (max-width: 769px) {
+    .priceRange {
+        max-width: 60%
+    }
+
+ }
+
+ @media (max-width: 450px) {
+    .priceRange {
+        max-width: 90%
+    }
+
+ }

@@ -3,8 +3,10 @@
     display: block;
     /* background-color: #121212;; */
     min-width: 160px;
-    padding: 12px 16px;
+    padding: 10px 10px;
     z-index: 1;
+    
+
   }
 
   .checkmark {
@@ -15,6 +17,7 @@
     width: 24px;
     background-color: #eee;
     border-radius: 1em;
+   
   }
 
   .container:hover input ~ .checkmark {
@@ -30,10 +33,13 @@
 
   .filter-group h2{
     font-size: 1.2rem;
+    
   }
 
   .container {
-    font-size: 1rem;
+    font-size: 0.9rem;
+    
+    
   }
   
   .checkmark:after {
@@ -49,7 +55,7 @@
   
   .container .checkmark:after {
     left: 9px;
-    top: 5px;
+    top: 0;
     width: 8px;
     height: 15px;
     border: solid white;

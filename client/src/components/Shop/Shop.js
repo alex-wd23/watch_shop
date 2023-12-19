@@ -4,7 +4,7 @@ import ShopFilter from '../ShopFilter/ShopFilter';
 import Product from '../Product/Product';
 import Scroll from '../Scroll/Scroll';
 import axios from 'axios';
-import ParticlesContainer from '../Particles/ParticlesBG';
+// import ParticlesContainer from '../Particles/ParticlesBG';
 import Pagination from '../Pagination/Pagination';
 
 const Shop = () => {

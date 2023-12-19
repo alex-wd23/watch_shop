@@ -6,8 +6,9 @@
     z-index: 2;
     right: 0;
     top: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
+    margin-top: 2px;
     background-color: rgba(0, 0, 0, 0.5);
     display: flex; /* Add this */
     justify-content: flex-end; /* Aligns children to the right */
@@ -19,8 +20,6 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    width: 60%; /* Adjust width as needed */
     text-align: center;
     animation: slideInRight 0.5s ease-in-out;
     height: 100%;
@@ -60,17 +59,21 @@
 .cart-item {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     padding: 10px;
     width: 100%;
   }
   
 .cart-item-details {
     display: flex;
-    flex-direction: column; /* Stack item details vertically */
-    flex-grow: 1; /* Allows the item details to grow */
+    flex-direction: row; /* Stack item details vertically */
+    justify-content: flex-start;
     margin-right: 10px; /* Space between details and price */
+    gap: 2vw;
+    
 }
+
+
 
 .cart-item-name {
     font-weight: bold;
@@ -78,6 +81,7 @@
     /* Ensure name takes only the space it needs */
     flex-shrink: 1;
     min-width: 0;
+   
 }
 
 .cart-item-description {
@@ -93,6 +97,7 @@
     font-weight: bold;
     margin-left: auto; /* Pushes the price to the right */
     white-space: nowrap; /* Prevents the price from wrapping */
+    
 }
 
 .cart-total {
@@ -185,15 +190,17 @@
 @media (max-width: 769px) {
   
 
-    .cart-modal-container .cart-item-image {
+    .cart-item-image {
         align-self: center; /* Center the image within the column */
         margin-bottom: 30px; /* Add some space below the image */
         margin-right: 10px
     }
 
-    .cart-modal-container .cart-item-details {
+    .cart-item-details {
         display: flex;
         flex-direction: column;
+        gap:0;
+        
        
     }
 

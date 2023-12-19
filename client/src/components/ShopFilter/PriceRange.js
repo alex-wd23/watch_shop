@@ -1,4 +1,5 @@
 import {React, useState} from 'react'
+import './PriceRange.css'
 
 const PriceRange = ({filters, handleFilterChange}) => {
 

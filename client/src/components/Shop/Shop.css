@@ -33,18 +33,20 @@
 }
 
 .filter-sidebar {
-  /* Keep your existing styles */
-  width: 240px;
-  padding: 20px;
-  /* ... */
-  margin-right: 1em;
+  /* max-width: 240px;
+  padding-top: 20px;
+  padding-left: 5px;
+  padding-right: 145px; */
+  box-sizing: border-box;
+  
 }
 
 
   .products {
     
     flex-grow: 1; /* Take up all available space */
-    padding: 20px;
+    padding: 5px;
+
     flex-direction: row;
   }
 
@@ -61,6 +63,7 @@
     justify-content: start; /* Align items to the start of the container, optional */
     align-items: start; /* Align items to the start of the container, optional */
     gap: 2vw;
+   
   }
   
   .shop-page .product {
