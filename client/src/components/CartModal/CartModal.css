@@ -31,6 +31,7 @@
     /* justify-content: center; Center items vertically */
     overflow-y: auto; /* Add vertical scroll */
     overflow-x: hidden; /* Hide horizontal scroll */
+    flex-wrap: wrap;
 }
 
 .close-modal {
@@ -56,48 +57,30 @@
     
 }
 
+
 .cart-item {
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
+    align-items: center; /* Keep items aligned vertically */
+    /* justify-content: space-between;  */
     padding: 10px;
-    width: 100%;
-  }
-  
+    flex-basis: 100%; /* Each item will try to take full width of the parent */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
 .cart-item-details {
     display: flex;
-    flex-direction: row; /* Stack item details vertically */
-    justify-content: flex-start;
-    margin-right: 10px; /* Space between details and price */
-    gap: 2vw;
-    
+    flex: 1; /* Allow the item details to grow and fill available space */
+    align-items: center; /* Align the details vertically */
+    padding: 0 10px; /* Add some padding */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    gap: 1vw;
 }
 
-
-
-.cart-item-name {
-    font-weight: bold;
-    margin-bottom: 5px;
-    /* Ensure name takes only the space it needs */
-    flex-shrink: 1;
-    min-width: 0;
-   
-}
-
-.cart-item-description {
-    margin-bottom: 5px;
-    /* Ensure description does not push price out of alignment */
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    
-}
-
-.cart-item-price {
-    font-weight: bold;
-    margin-left: auto; /* Pushes the price to the right */
-    white-space: nowrap; /* Prevents the price from wrapping */
-    
+.cart-item-name, .cart-item-price {
+    white-space:nowrap;
+    width:100px;
+    text-align: start;
+    font-weight: bolder;
 }
 
 .cart-total {
@@ -125,11 +108,10 @@
 }
 
 .quantity-control {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  
+    display: flex;
+    align-items: center; /* Center the quantity controls vertically */
+    justify-content: space-between; /* Space out the plus, minus, and number */
+    width: 120px; /* Set a fixed width for the quantity controls */
 }
 
 .quantity-button {

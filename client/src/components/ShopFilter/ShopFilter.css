@@ -10,6 +10,7 @@
     overflow-y: auto; /* Allows the filter to be scrollable independently */
     overflow-x: auto;
     z-index: 1; /* Ensures the sidebar stays above other content */ 
+    margin-top: 4vh;
    
   }
 

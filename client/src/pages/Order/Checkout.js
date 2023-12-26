@@ -283,9 +283,8 @@ export const Checkout = () => {
               <img src={item.image_url} alt={item.name} className="cart-item-image" />
               </QuantityIndicator>
               <div className="cart-item-details">
-                <div className="cart-item-name">{item.name}</div>
-                {/* <div className="cart-item-description">{item.description}</div> */}
-                <div className="cart-item-price">${(item.price * item.quantity).toFixed(2)}</div>
+                <div className="checkout-cart-item-name">{item.name}</div>
+                <div className="checkout-cart-item-price">${(item.price * item.quantity).toFixed(2)}</div>
                 {showError && stockInfo[item.id] !== undefined && stockInfo[item.id] < item.quantity ? (
                 <div className="stock-info">
                   Available stock: {stockInfo[item.id]}
@@ -300,7 +299,7 @@ export const Checkout = () => {
               <span>Total: </span>
             </div>
             <div className='summary-total-right-column'>
-              <span>$10</span>
+              <span>$10.00</span>
               <span>${(calculateTotal().toFixed(2))}</span>  
             </div>
           </div>
