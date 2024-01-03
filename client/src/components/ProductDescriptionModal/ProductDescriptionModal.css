@@ -13,6 +13,10 @@
     
 }
 
+.no-scroll {
+    overflow: hidden;
+  }
+
 .productModalContent {
     z-index: 1; /* Ensure it's above the overlay */
     gap: 1vh;

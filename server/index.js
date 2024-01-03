@@ -23,8 +23,8 @@ const corsOptions = {
   };
 
 const options = {
-    key: fs.readFileSync('certificates/private.key'),
-    cert: fs.readFileSync('certificates/certificate.crt')
+    key: fs.readFileSync('certificates/localhost+2-key.pem'),
+    cert: fs.readFileSync('certificates/localhost+2.pem')
 };
 
 app.use(express.json());

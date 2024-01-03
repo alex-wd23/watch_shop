@@ -13,6 +13,16 @@ const ProductDescriptionModal = ({ product, onClose }) => {
     { url: "/watch_shop/image-3.jpg", title: "Watch 3" }
   ];
 
+  useEffect(() => {
+    // Add a class to body to disable scrolling
+    document.body.classList.add('no-scroll');
+
+    return () => {
+      // Remove the class from body to re-enable scrolling
+      document.body.classList.remove('no-scroll');
+    };
+  }, []);
+
   const setTabDescription = () => {
       setCurrentTab('description')
   }

@@ -21,8 +21,12 @@ const UserAccount = () => {
 
   return (
     <div className="user-account-container">
+      <div className="user-navbar-container">
       <UserPageNavBar setActiveSection={setActiveSection} refreshUserData={getUserData} />
+      </div>
+      <div className="user-page-content">
       <UserPageContent section={activeSection} />
+      </div>
     </div>
   );
 };
