@@ -5,10 +5,13 @@ import QuantityIndicator from '../../components/QuantityIndicator/QuantityIndica
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Overlay from '../../components/NoInteractionOverlay/Overlay.js';
+import { useUser } from '../../contexts/UserContext/UserContext';
 
 export const Checkout = () => {
   const { cart, dispatch } = useCart();
+  const { user } = useUser();
   const navigate = useNavigate();
+
   useEffect(() => {
     if (cart.items.length === 0) {
       navigate('/shop'); // Redirect to the shop page or cart page
@@ -32,12 +35,6 @@ export const Checkout = () => {
   const [formErrors, setFormErrors] = useState({});
   const [stockInfo, setStockInfo] = useState({});
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
-    // Revalidate the form to update error messages
-    validateFormOnChange(name, value);
-  };
 
   const handleCloseError = () => {
     setShowError(false);
@@ -103,6 +100,16 @@ export const Checkout = () => {
     setFormErrors(errors);
   };
 
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+    // Revalidate the form to update error messages
+    validateFormOnChange(name, value);
+    
+  };
+
+  const calculateTotal = () => cart.items.reduce((total, item) => total + 10 + (item.price * item.quantity), 0);
+
   const handleCheckout = async () => {
     if (!validateForm()) return;
     const orderData = {
@@ -112,7 +119,9 @@ export const Checkout = () => {
         address: formData.address,
         apartment: formData.apartment,
         phone: formData.phone,
-        items: cart.items
+        items: cart.items,
+        user_id: user?.user_id,
+        total: calculateTotal(),
     };
 
     if (saveInfo) {
@@ -120,10 +129,10 @@ export const Checkout = () => {
     }
 
     try {
-        await axios.post('http://localhost:3001/checkout', orderData);
+        await axios.post('https://localhost:3001/checkout', orderData);
 
         for (const item of cart.items) {
-          await axios.post('http://localhost:3001/updateStock', {
+          await axios.post('https://localhost:3001/updateStock', {
             watch_id: item.id,
             quantity: item.quantity
           });
@@ -144,7 +153,7 @@ export const Checkout = () => {
         const updatedStockInfo = {};
       for (const item of cart.items) {
         try {
-          const response = await axios.get(`http://localhost:3001/getStock?watch_id=${item.id}`);
+          const response = await axios.get(`https://localhost:3001/getStock?watch_id=${item.id}`);
           updatedStockInfo[item.id] = response.data;
           console.log(updatedStockInfo)
         } catch (err) {
@@ -160,7 +169,7 @@ export const Checkout = () => {
     }
   };
 
-  const calculateTotal = () => cart.items.reduce((total, item) => total + 10 + (item.price * item.quantity), 0);
+  
 
   return (
     <div className={`checkout-container ${showConfirmation ? 'no-interaction' : ''}`}>

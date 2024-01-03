@@ -32,7 +32,7 @@ const Header = () => {
   const checkAuthStatus = async () => {
   
     try {
-      const response = await axios.get('http://localhost:3001/checkAuth', { withCredentials: true });
+      const response = await axios.get('https://localhost:3001/checkAuth', { withCredentials: true });
       const isAuthenticatedNow = response.data.user ? true : false;
       setIsAuthenticated(isAuthenticatedNow);
       return isAuthenticatedNow;

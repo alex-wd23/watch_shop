@@ -19,7 +19,7 @@ export const ProductTab = ({ parentWidth }) => {
     // Function to fetch products from the server
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://localhost:3001/products');
+        const response = await fetch('https://localhost:3001/products');
         const data = await response.json();
         const filteredData = data.filter(product => product.category === activeButton);
         setFilteredProducts(filteredData);

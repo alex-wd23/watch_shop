@@ -1,0 +1,43 @@
+.settings-options {
+  cursor: pointer;
+}
+
+.settingsContainer form {
+  margin-top: 10px;
+  background-color: #2c2c2c;
+  padding: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.settingsContainer label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.settingsContainer input[type="text"],
+.settingsContainer input[type="email"],
+.settingsContainer input[type="password"] {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  background-color: #f5f5f5;
+}
+
+.settingsContainer input[type="submit"],
+.settingsContainer button {
+  background-color: #1e90ff;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.settingsContainer input[type="submit"]:hover,
+.settingsContainer button:hover {
+  background-color: #005cbf;
+}

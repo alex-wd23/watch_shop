@@ -40,7 +40,7 @@ const ShopFilter = ({setDisplayedProducts, onFilterChange}) => {
       
   const applyFilters = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/filter", {
+      const response = await axios.get("https://localhost:3001/filter", {
         params: filters
       });
       setDisplayedProducts(response.data);
@@ -54,7 +54,7 @@ const ShopFilter = ({setDisplayedProducts, onFilterChange}) => {
   const resetFilters = async() => {
     setFilters(defaultFilters);
     try {
-      const response = await axios.get("http://localhost:3001/products");
+      const response = await axios.get("https://localhost:3001/products");
       setDisplayedProducts(response.data);
       onFilterChange(); // Reset pagination
     } catch (error) {

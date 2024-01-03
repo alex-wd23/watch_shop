@@ -10,7 +10,7 @@ const PrivateRoute = ({ children }) => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        await axios.get('http://localhost:3001/checkAuth', { withCredentials: true });
+        await axios.get('https://localhost:3001/checkAuth', { withCredentials: true });
         setIsAuthenticated(true);
       } catch (error) {
         setIsAuthenticated(false);

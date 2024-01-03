@@ -28,7 +28,7 @@ const LoginModal = ({ showModal, setShowModal }) => {
         const verifyToken = async () => {
           if (resetToken) {
             try {
-              const response = await axios.get(`http://localhost:3001/verifyresettoken/${resetToken}`);
+              const response = await axios.get(`https://localhost:3001/verifyresettoken/${resetToken}`);
               if (response.status === 200) {
                 // If the token is valid, proceed to show the reset form
                 setShowModal(true);
@@ -78,7 +78,7 @@ const LoginModal = ({ showModal, setShowModal }) => {
         try {
             let response;
             if (formData.form === 'login') {
-                response = await axios.post('http://localhost:3001/signin', {
+                response = await axios.post('https://localhost:3001/signin', {
                     username: formData.username,
                     password: formData.password,
                 }, { withCredentials: true });
@@ -92,7 +92,7 @@ const LoginModal = ({ showModal, setShowModal }) => {
                     setError(`Login error: ${response.status} ${response.statusText}`);
                 }
             } else if (formData.form === 'register') {
-                response = await axios.post('http://localhost:3001/register', {
+                response = await axios.post('https://localhost:3001/register', {
                     username: formData.username,
                     password: formData.password,
                     email: formData.email,
@@ -114,7 +114,7 @@ const LoginModal = ({ showModal, setShowModal }) => {
                     setError(`Registration Error: ${response.status} ${response.statusText}`);
                 }
             } else if (formData.form === 'forgot') {
-                response = await axios.post('http://localhost:3001/forgotpassword', {
+                response = await axios.post('https://localhost:3001/forgotpassword', {
                     email: formData.email,
                 });
 
@@ -125,7 +125,7 @@ const LoginModal = ({ showModal, setShowModal }) => {
                     setError(`Forgot Password Error: ${response.status} ${response.statusText}`);
                 }
             } else if (formData.form === 'reset') {
-                response = await axios.post('http://localhost:3001/resetpassword', {
+                response = await axios.post('https://localhost:3001/resetpassword', {
                     newPassword: formData.newPassword,
                     confirmPassword: formData.confirmPassword,
                     resetToken: formData.resetToken

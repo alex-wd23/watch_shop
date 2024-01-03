@@ -9,15 +9,23 @@ const crypto = require('crypto');
 const secret = crypto.randomBytes(64).toString('hex');
 const transporter = require('./transporter');
 const cookieParser = require('cookie-parser');
+const https = require('https');
+const fs = require('fs');
+
+
 
 
 // Middleware
 const corsOptions = {
-    origin: ['http://localhost:3000', 'http://192.168.1.236:3000'], // Front-end origin
+    origin: ['https://localhost:3000', 'https://192.168.1.236:3000'], // Front-end origin
     credentials: true, // Allow cookies to be sent
     optionsSuccessStatus: 200 
   };
 
+const options = {
+    key: fs.readFileSync('certificates/private.key'),
+    cert: fs.readFileSync('certificates/certificate.crt')
+};
 
 app.use(express.json());
 app.use(cookieParser());
@@ -30,7 +38,7 @@ const limiter = rateLimit({
 });
 
 //  Apply to all requests
-app.use(limiter);
+// app.use(limiter);
 
 // Routes
 
@@ -252,6 +260,73 @@ app.post("/resetpassword", async (req, res) => {
     }
 });
 
+// Endpoint to get user data
+app.get("/userData", async (req, res) => {
+    try {
+      const token = req.cookies.token;
+      if (!token) {
+        return res.status(401).json("No authentication token");
+      }
+  
+      jwt.verify(token, secret, async (err, decoded) => {
+        if (err) return res.status(403).json("Token is not valid");
+  
+        const userId = decoded.userId;
+        const userData = await pool.query("SELECT * FROM users WHERE user_id = $1", [userId]);
+        // Exclude password and any sensitive information from the response
+        const { password, ...userDetails } = userData.rows[0];
+        res.json(userDetails);
+      });
+    } catch (error) {
+      res.status(500).json("Server Error");
+    }
+  });
+
+// Endpoint user settings
+app.put('/user/settings', async (req, res) => {
+    const { userId, type, email, username, oldPassword, newPassword } = req.body;
+
+    try {
+        switch(type) {
+            case 'email':
+                // Update email
+                await pool.query("UPDATE users SET email = $1 WHERE user_id = $2", [email, userId]);
+                res.status(200).json("Email updated successfully");
+                break;
+
+            case 'username':
+                // Update username
+                await pool.query("UPDATE users SET username = $1 WHERE user_id = $2", [username, userId]);
+                res.status(200).json("Username updated successfully");
+                break;
+
+            case 'password':
+                // Update password
+                const user = await pool.query("SELECT password FROM users WHERE user_id = $1", [userId]);
+                
+                if (user.rows.length === 0) {
+                    return res.status(404).json("User not found");
+                }
+
+                const validPassword = bcrypt.compareSync(oldPassword, user.rows[0].password);
+                if (!validPassword) {
+                    return res.status(400).json("Invalid old password");
+                }
+
+                const hashedNewPassword = bcrypt.hashSync(newPassword, 10);
+                await pool.query("UPDATE users SET password = $1 WHERE user_id = $2", [hashedNewPassword, userId]);
+                res.status(200).json("Password updated successfully");
+                break;
+
+            default:
+                return res.status(400).json("Invalid update type");
+        }
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).json("Server Error");
+    }
+});
+
 //////////////////////////////////////////////
 // Shop Section
 /////////////////////////////////////////////
@@ -327,7 +402,7 @@ app.get("/filter", async (req, res) => {
 /////////////////////////////////////////////
 
 app.post('/checkout', async (req, res) => {
-    const { email, firstName, lastName, address, apartment, phone, items } = req.body;
+    const { user_id, email, firstName, lastName, address, apartment, phone, items, total } = req.body;
     const emailRegex = /^\S+@\S+\.\S+$/;
     const phoneNumberRegex = /^\+?\d{10,15}$/; // Regex for phone number validation
     let errors = {};
@@ -351,8 +426,8 @@ app.post('/checkout', async (req, res) => {
     try {
         // Insert into orders table
         const newOrder = await pool.query(
-            "INSERT INTO orders (email, first_name, last_name, address, apartment, phone) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
-            [email, firstName, lastName, address, apartment, phone]
+            "INSERT INTO orders (user_id, email, first_name, last_name, address, apartment, phone, total) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",
+            [user_id, email, firstName, lastName, address, apartment, phone, total]
         );
 
         const orderId = newOrder.rows[0].order_id;
@@ -409,8 +484,108 @@ app.get('/getStock', async (req, res) => {
     }
 });
 
+//////////////////////////////////////////////
+// Orders Section
+/////////////////////////////////////////////
+
+app.get('/user/orders/:userId', async (req, res) => {
+    try {
+        const { userId } = req.params;
+        const orders = await pool.query(`
+            SELECT
+                o.order_id,
+                o.order_date,
+                o.status,
+                o.total,
+                array_agg(json_build_object('name', w.name, 'quantity', oi.quantity)) as products
+            FROM
+                orders o
+            JOIN
+                order_items oi ON o.order_id = oi.order_id
+            JOIN
+                watches w ON oi.watch_id = w.id
+            WHERE
+                o.user_id = $1
+            GROUP BY
+                o.order_id
+            ORDER BY
+                o.order_date DESC
+        `, [userId]);
+
+        res.json(orders.rows);
+    } catch (error) {
+        console.error('Error fetching orders:', error);
+        res.status(500).json("Server Error");
+    }
+});
+
+
+app.put('/user/orders/cancel/:orderId', async (req, res) => {
+    const { orderId } = req.params;
+    try {
+      const updateResult = await pool.query(
+        "UPDATE orders SET status = 'Canceled' WHERE order_id = $1 RETURNING *",
+        [orderId]
+      );
+  
+      if (updateResult.rows.length > 0) {
+        res.json({ message: "Order canceled successfully", order: updateResult.rows[0] });
+      } else {
+        res.status(404).json("Order not found");
+      }
+    } catch (error) {
+      console.error('Error canceling order:', error);
+      res.status(500).json("Server Error");
+    }
+  });
+
+//////////////////////////////////////////////
+// ACcount Details
+/////////////////////////////////////////////
+
+// Fetch addresses for a user
+app.get('/user/address/:userId', async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const result = await pool.query("SELECT * FROM addresses WHERE user_id = $1", [userId]);
+      res.json(result.rows); // Send the addresses as an array
+    } catch (error) {
+      console.error(error);
+      res.status(500).json("Server Error");
+    }
+  });
+  
+  // Add a new address for a user
+  app.post('/user/address', async (req, res) => {
+    const { userId, address } = req.body;
+    try {
+      await pool.query("INSERT INTO addresses (user_id, address) VALUES ($1, $2)", [userId, address]);
+      res.status(201).json({ message: "Address added successfully" });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json("Server Error");
+    }
+  });
+  
+  // Remove an address for a user
+  app.delete('/user/address/:userId/:addressId', async (req, res) => {
+    const { userId, addressId } = req.params;
+    try {
+      await pool.query("DELETE FROM addresses WHERE user_id = $1 AND address_id = $2", [userId, addressId]);
+      res.status(200).json({ message: "Address removed successfully" });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json("Server Error");
+    }
+  });
 
 // 0.0.0.0 used for testing on phone
-app.listen(3001, '0.0.0.0', () => {
-    console.log('The server is running on port 3001');
+// app.listen(3001, '0.0.0.0', () => {
+//     console.log('The server is running on port 3001');
+// });
+
+
+// HTTPS setup
+https.createServer(options, app).listen(3001, () => {
+    console.log('HTTPS server running on port 3001');
 });

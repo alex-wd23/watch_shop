@@ -1,0 +1,40 @@
+.ordersContainer h2 {
+  color:#005cbf;
+
+}
+
+.ordersTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ordersTable th, .ordersTable td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.ordersTable th {
+  background-color: #333;
+  color: white;
+}
+
+
+
+.cancelButton {
+  background-color: #1e90ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cancelButton:hover {
+  background-color: #005cbf;
+}
+
+.canceledOrder {
+  /* Styles for canceled orders, if needed */
+}
